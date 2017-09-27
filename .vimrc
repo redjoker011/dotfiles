@@ -43,6 +43,8 @@ Plug 'vim-scripts/nginx.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'wakatime/vim-wakatime'
 Plug 'prettier/vim-prettier'
+Plug 'sekel/vim-vue-syntastic'
+Plug 'posva/vim-vue'
 
 " Initialize plugin system
 call plug#end()
@@ -317,3 +319,18 @@ let g:prettier#config#parser = 'flow'
 
 " cli-override|file-override|prefer-file
 let g:prettier#config#config_precedence = 'prefer-file'
+
+"Vim-vue configurations
+autocmd FileType vue syntax sync fromstart
+
+"Vim vue syntastic configurations
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_vue_checkers = ['eslint']
+let local_eslint = finddir('node_modules', '.;') . '/.bin/eslint'
+if matchstr(local_eslint, "^\/\\w") == ''
+    let local_eslint = getcwd() . "/" . local_eslint
+endif
+if executable(local_eslint)
+    let g:syntastic_javascript_eslint_exec = local_eslint
+    let g:syntastic_vue_eslint_exec = local_eslint
+endif
