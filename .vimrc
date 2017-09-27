@@ -323,7 +323,8 @@ let g:prettier#config#config_precedence = 'prefer-file'
 "Vim-vue configurations
 autocmd FileType vue syntax sync fromstart
 
-"Vim vue syntastic configurations
+" Vim vue syntastic configurations
+" You need to manually install es lint and eslint-pligin
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_vue_checkers = ['eslint']
 let local_eslint = finddir('node_modules', '.;') . '/.bin/eslint'
