@@ -27,6 +27,7 @@
   b = branch -v                     # branch (verbose)
 
   # commit
+  cm = !git add -A && git commit -m # add files and commit
   c = commit -m                     # commit with message
   ca = commit -am                   # commit all with message
   ci = commit                       # commit
