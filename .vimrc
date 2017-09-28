@@ -320,6 +320,9 @@ let g:prettier#config#parser = 'flow'
 " cli-override|file-override|prefer-file
 let g:prettier#config#config_precedence = 'prefer-file'
 
+" none|es5|all remove auto trailing comma
+let g:prettier#config#trailing_comma = 'none'
+
 "Vim-vue configurations
 autocmd FileType vue syntax sync fromstart
 
