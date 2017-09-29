@@ -45,6 +45,7 @@ Plug 'wakatime/vim-wakatime'
 Plug 'prettier/vim-prettier'
 Plug 'sekel/vim-vue-syntastic'
 Plug 'posva/vim-vue'
+Plug 'gcorne/vim-sass-lint'
 
 " Initialize plugin system
 call plug#end()
@@ -320,14 +321,12 @@ let g:prettier#config#parser = 'flow'
 " cli-override|file-override|prefer-file
 let g:prettier#config#config_precedence = 'prefer-file'
 
-" none|es5|all remove auto trailing comma
-let g:prettier#config#trailing_comma = 'none'
-
 "Vim-vue configurations
 autocmd FileType vue syntax sync fromstart
 
 " Vim vue syntastic configurations
-" You need to manually install es lint and eslint-pligin
+" You need to manually install es lint and eslint-pligin via npm
+" set checker to airbnb which works properly with pretifier
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_vue_checkers = ['eslint']
 let local_eslint = finddir('node_modules', '.;') . '/.bin/eslint'
@@ -338,3 +337,8 @@ if executable(local_eslint)
     let g:syntastic_javascript_eslint_exec = local_eslint
     let g:syntastic_vue_eslint_exec = local_eslint
 endif
+
+" Sass Lint Configs
+" Need to Install sass-lint via npm
+let g:syntastic_sass_checkers=["sasslint"]
+let g:syntastic_scss_checkers=["sasslint"]
