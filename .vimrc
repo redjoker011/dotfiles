@@ -136,6 +136,8 @@ nnoremap <silent> <Left> :bprev<CR>
 nnoremap <silent> <Right> :bnext<CR>
 nnoremap <Up> :echo "Use k"<CR>
 nnoremap <Down> :echo "Use j"<CR>
+" jk is escape
+inoremap jk <esc>
 
 " pangloss vim-js configuration
 let g:javascript_plugin_jsdoc = 1
