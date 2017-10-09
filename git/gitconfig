@@ -55,8 +55,8 @@
 
   # pull
   pl = pull                         # pull
-  prod = !git pull --rebase origin development #pull rebase development
-  prom = !git pull --rebase origin master #pull rebase master
+  pldev = !git pull --rebase origin development #pull rebase development
+  plmstr = !git pull --rebase origin master #pull rebase master
 
   # push
   ps = push                         # push
