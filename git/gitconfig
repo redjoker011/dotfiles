@@ -55,13 +55,11 @@
 
   # pull
   pl = pull                         # pull
-  pldev = !git pull --rebase origin development #pull rebase development
-  plmstr = !git pull --rebase origin master #pull rebase master
+  plo =  !git pull --rebase origin  #pull rebase origin
 
   # push
   ps = push                         # push
-  psdev = !git push origin development # push development
-  psmstr = !git push origin master # push master
+  pso = !git push origin            # push origin
 
   # rebase
   rc = rebase --continue            # continue rebase
