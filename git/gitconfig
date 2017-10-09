@@ -60,6 +60,8 @@
 
   # push
   ps = push                         # push
+  psdev = !git push origin development # push development
+  psmstr = !git push origin master # push master
 
   # rebase
   rc = rebase --continue            # continue rebase
