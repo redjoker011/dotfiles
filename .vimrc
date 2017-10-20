@@ -51,6 +51,7 @@ Plug 'prettier/vim-prettier'
 Plug 'sekel/vim-vue-syntastic'
 Plug 'posva/vim-vue'
 Plug 'gcorne/vim-sass-lint'
+Plug 'junegunn/vim-easy-align'
 
 " Initialize plugin system
 call plug#end()
@@ -349,3 +350,10 @@ endif
 " Need to Install sass-lint via npm
 let g:syntastic_sass_checkers=["sasslint"]
 let g:syntastic_scss_checkers=["sasslint"]
+
+" Easy Align Mappings
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
