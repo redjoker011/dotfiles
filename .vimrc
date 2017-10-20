@@ -1,3 +1,8 @@
+" dependencies third party libraries
+" ACK
+" NerdFonT
+
+
 " vim-plug (https://github.com/junegunn/vim-plug) settings 
 " Automatically install vim-plug and run PlugInstall if vim-plug not found
 if empty(glob('~/.vim/autoload/plug.vim'))
