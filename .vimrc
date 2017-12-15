@@ -52,6 +52,7 @@ Plug 'sekel/vim-vue-syntastic'
 Plug 'posva/vim-vue'
 Plug 'gcorne/vim-sass-lint'
 Plug 'junegunn/vim-easy-align'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Initialize plugin system
 call plug#end()
