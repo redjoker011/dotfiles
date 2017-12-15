@@ -357,3 +357,12 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" Nerdtree Config
+" Auto close tab when file is open
+let NERDTreeQuitOnOpen = 1
+" Auto Delete Buffer for deleted Files
+let NERDTreeAutoDeleteBuffer = 1
+" Make NerdTree Pretty
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
