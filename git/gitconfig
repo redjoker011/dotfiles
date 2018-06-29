@@ -1,5 +1,6 @@
-# set your user tokens as environment variables, such as ~/.secrets
-# See the README for examples.
+[user]
+	name = Peter John Alvarado
+	email = redjoker011@gmail.com
 [color]
   ui = true
 [color "branch"]
@@ -26,13 +27,17 @@
   # branch
   b = branch -v                     # branch (verbose)
 
+  cor = checkout --track -b         # checkout and track remote branch
+
   # commit
-  cm = !git add -A && git commit -m # add files and commit
+	cm = !git add -A && git commit -m # add files and commit
   c = commit -m                     # commit with message
   ca = commit -am                   # commit all with message
   ci = commit                       # commit
   amend = commit --amend            # ammend your last commit
   ammend = commit --amend           # ammend your last commit
+  no-changes = update-index --assume-unchanged      # This will tell git you want to start ignoring the changes to the file
+  has-changes = update-index --no-assume-unchanged  # This will tell git you want to start tracking the changes to the file
 
   # checkout
   co = checkout                     # checkout
@@ -55,11 +60,11 @@
 
   # pull
   pl = pull                         # pull
-  plo =  !git pull --rebase origin  #pull rebase origin
+  plo = !git pull --rebase origin   #pull rebase origin
 
   # push
   ps = push                         # push
-  pso = !git push origin            # push origin
+  pso = !git push origin            # push on origin
 
   # rebase
   rc = rebase --continue            # continue rebase
@@ -129,3 +134,5 @@
   enabled = true
 [include]
   path = .gitconfig.user
+[credential]
+	helper = cache --timeout=3600
