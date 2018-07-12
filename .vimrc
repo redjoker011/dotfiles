@@ -376,3 +376,12 @@ command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-h
 " mapping for copying text into clipboard
 map <C-c> "+y<CR>
 set pastetoggle=<F3>
+
+" Powerline Configuration
+set guifont=Inconsolata\ for\ Powerline:h15
+let g:Powerline_symbols = 'fancy'
+set encoding=utf-8
+set t_Co=256
+set fillchars+=stl:\ ,stlnc:\
+set term=xterm-256color
+set termencoding=utf-8

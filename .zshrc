@@ -2,14 +2,30 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/peter/.oh-my-zsh
+export ZSH="/Users/exwire/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="spaceship"
-SAVEHIST=10
-HISTFILE=~/.zsh_history
+SPACESHIP_PROMPT_ADD_NEWLINE="true"
+SPACESHIP_CHAR_SYMBOL=" \uf0e7"
+SPACESHIP_CHAR_PREFIX="\uf296"
+SPACESHIP_CHAR_SUFFIX=(" ")
+SPACESHIP_CHAR_COLOR_SUCCESS="yellow"
+SPACESHIP_PROMPT_DEFAULT_PREFIX="$USER"
+SPACESHIP_PROMPT_FIRST_PREFIX_SHOW="true"
+SPACESHIP_USER_SHOW="true"
+
+# zsh tmux settings
+ZSH_TMUX_AUTOSTART='true'
+
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -53,7 +69,9 @@ HISTFILE=~/.zsh_history
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+  git
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -86,30 +104,17 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# TMUX Aliases
-# Attaches tmux to the last session; creates a new session if none exists.
-alias t='tmux attach || tmux new-session'
-
-# Attaches tmux to a session (example: ta portal)
-alias ta='tmux attach -t'
-
-# Creates a new session
-alias tn='tmux new -s'
-
-# Lists all ongoing sessions
-alias tl='tmux list-sessions'
-
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export EDITOR="vim"
-export USE_EDITOR=$EDITOR
-export VISUAL=$EDITOR
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source /Users/exwire/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+# COLORLS CONFIG
+# https://github.com/athityakumar/colorls#recommended-configurations
+alias ls='colorls -l -A --sd --dark'
+alias lc='colorls -t --gs --dark'
 
-stop() {
-    kill -9 $(ps ax | grep $1 | grep -v "grep" | awk '{print $1}')
-}
+eval "$(rbenv init - zsh)"
 
+#============= Git Command Aliases =====================
+alias gcd='git checkout development' # checkout development
+alias ggpull='git pull --rebase origin $(current_branch)'
+compdef ggpull=git
