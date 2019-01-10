@@ -47,7 +47,7 @@ Plug 'posva/vim-vue'
 Plug 'sekel/vim-vue-syntastic'
 Plug 'junegunn/vim-easy-align'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'gcorne/vim-sass-lint'
+Plug 'chrisbra/NrrwRgn' " Open Selected File in New Window
 
 " Initialize plugin system
 call plug#end()
