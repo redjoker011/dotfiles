@@ -1,0 +1,22 @@
+# If this commit is applied , it will...
+# e.g Optimize Database Queries
+
+# Why was this change made?
+# e.g This change will get rid of n+1 queries from the database, which will result into much more faster queries
+
+# RELATED
+# Provide links or keys to any relevant issues or resources
+# e.g https://semaphoreci.com/blog/2017/08/09/faster-rails-eliminating-n-plus-one-queries.html
+
+# GUIDELINES
+# https://chris.beams.io/posts/git-commit/#separate
+
+# Please enter commit message for your changes. Lines starting
+# with `#` will be ignored, and empty message aborts the commit.
+# - Separate subject from body with a blank line
+# - Limit the subject line to 50 characters
+# - Capitalize the subject line
+# - Do not end the subject line with a period
+# - Use the imperative mood in the subject line
+# - Wrap the body at 72 characters
+# - Use the body to explain what and why vs. how
