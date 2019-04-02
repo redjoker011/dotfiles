@@ -49,6 +49,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'chrisbra/NrrwRgn' " Open Selected File in New Window
 Plug 'jparise/vim-graphql' " Graphql Color Highlighting
+Plug 'fatih/vim-go' " Vim Plugin for Go
 
 " Initialize plugin system
 call plug#end()
