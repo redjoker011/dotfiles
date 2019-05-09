@@ -4,3 +4,4 @@ Collection of helpful developer's dotfiles configurations
 * Vim
 * Zsh
 * Git Commit Message Template
+* Vscode
