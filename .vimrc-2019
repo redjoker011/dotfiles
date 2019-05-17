@@ -53,6 +53,7 @@ Plug 'Quramu/tsuqoyomi', { 'do': 'yarn global typescript' }
 Plug 'chrisbra/NrrwRgn'
 Plug 'jparise/vim-graphql'
 Plug 'fatih/vim-go'
+Plug 'tpope/vim-eunuch'
 
 " Initialize plugin system
 call plug#end()
