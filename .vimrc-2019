@@ -144,9 +144,6 @@ nnoremap <Down> :echo "Use j"<CR>
 " jk is escape
 inoremap jk <esc>
 
-" https://jaxbot.me/articles/setting-up-vim-for-react-js-jsx-02-03-2015
-" let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-
 " Syntastic configuration
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -154,13 +151,6 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_ruby_checkers = ['mri', 'reek', 'rubocop']
 let g:syntastic_haml_checkers = ['haml_lint']
-
-" eslint executable
-" to enable eslint with synatstic add script in package.json
-" scripts: { 'lint': 'eslint .'}
-" https://medium.com/@hpux/vim-and-eslint-16fa08cc580f
-let g:syntastic_javascript_eslint_exe = 'npm run lint --'
-
 
 " restrict html
 let syntastic_mode_map = { 'passive_filetypes': ['html'] }
