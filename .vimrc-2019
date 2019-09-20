@@ -125,8 +125,14 @@ function! SyntaxItem()
   return synIDattr(synID(line("."),col("."),1),"name")
 endfunction
 
+" Filetype detection, plugins, and indent rules
 filetype plugin indent on
+
+" Syntax highlighting
 syntax on
+
+" Spell check and line wrap just for git commit messages
+autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " UI Settings
 set wildmenu
