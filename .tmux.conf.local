@@ -272,12 +272,33 @@ run-shell ~/clone/path/resurrect.tmux
 # https://robots.thoughtbot.com/tmux-copy-paste-on-os-x-a-better-future
 
 # Use vim keybindings in copy mode
+# https://github.com/tmux/tmux/issues/754 for Updated syntax
 setw -g mode-keys vi
 
 # Setup 'v' to begin selection as in Vim
-bind-key -t vi-copy v begin-selection
-bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+bind-key -T copy-mode-vi y send-keys -X copy-pipe "reattach-to-user-namespace pbcopy"
 
 # Update default binding of `Enter` to also use copy-pipe
-unbind -t vi-copy Enter
-bind-key -t vi-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
+unbind -T copy-mode-vi Enter
+bind-key -T copy-mode-vi Enter send-keys -X copy-pipe "reattach-to-user-namespace pbcopy"
+
+###########################
+##  Tmux Plugin Manager
+############################
+#
+# Tmux plugin manager
+# https://github.com/tmux-plugins/tpm
+set -g @plugin 'tmux-plugins/tpm'
+# tmux continuumm for continous session saving
+# https://github.com/tmux-plugins/tmux-continuum/blob/master/docs/automatic_start.md
+set -g @plugin 'tmux-plugins/tmux-continuum'
+
+# Enable tmux continumm
+set -g @continuum-boot 'on'
+# Start iTerm in Full screen
+set -g @continuum-boot-options 'iterm,fullscreen'
+
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run -b '~/.tmux/plugins/tpm/tpm'
