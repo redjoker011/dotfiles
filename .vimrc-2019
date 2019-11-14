@@ -13,6 +13,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
 Plug 'gregsexton/MatchTag'
 Plug 'lebibin/dracula-vim'
+Plug 'arzg/vim-substrata'
 Plug 'lilydjwg/colorizer'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -20,6 +21,9 @@ Plug 'mattn/emmet-vim'
 " Plug 'majutsushi/tagbar' " Need to manually install dependency in source
 Plug 'mhinz/vim-startify'
 " Plug 'mxw/vim-jsx' " React and jsx framework related plugin
+" Hyper Focus writing limelight + goyo
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
@@ -42,18 +46,44 @@ Plug 'vim-syntastic/syntastic'
 Plug 'wakatime/vim-wakatime'
 Plug 'scrooloose/nerdtree'
 Plug 'mileszs/ack.vim'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': [
+    \ 'javascript',
+    \ 'typescript',
+    \ 'css',
+    \ 'scss',
+    \ 'json',
+    \ 'graphql',
+    \ 'markdown',
+    \ 'vue',
+    \ 'yaml',
+    \ 'html',
+    \ 'ruby',
+    \ 'go' ] }
 Plug 'posva/vim-vue'
 Plug 'sekel/vim-vue-syntastic'
 Plug 'junegunn/vim-easy-align'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'jremmen/vim-ripgrep'
 Plug 'leafgarland/typescript-vim'
-Plug 'Quramu/tsuqoyomi', { 'do': 'yarn global typescript' }
+Plug 'Quramy/tsuquyomi'
 Plug 'chrisbra/NrrwRgn'
 Plug 'jparise/vim-graphql'
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-eunuch'
+" Snippets compatible with coc-snippets
+" https://github.com/honza/vim-snippets
+Plug 'honza/vim-snippets'
+
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-tslint', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'} " mru and stuff
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'} " color highlighting
 
 " Initialize plugin system
 call plug#end()
@@ -138,7 +168,7 @@ autocmd Filetype gitcommit setlocal spell textwidth=72
 set wildmenu
 set t_Co=256
 set background=dark
-colorscheme dracula
+colorscheme substrata
 let g:dracula_italic = 1
 let g:airline_theme = 'dracula'
 
@@ -154,7 +184,6 @@ inoremap jk <esc>
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_ruby_checkers = ['mri', 'reek', 'rubocop']
 let g:syntastic_haml_checkers = ['haml_lint']
 
@@ -169,6 +198,10 @@ endfunction
 autocmd VimEnter * call AirlineInit()
 let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
+
+" COC warnings via airline
+let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
 
 " Add mapping for tagbar
@@ -278,33 +311,19 @@ set confirm             " get a dialog when :q, :w, or :wq fails
 "key mappings"
 map <C-b> :NERDTreeToggle<CR>
 
-" Running before saving async (vim 8+)
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-
-" Set Preferred Prettier Settings
-
-" Hide Prettier quick fix
+"Prettier Configuration
 let g:prettier#quickfix_enabled = 0
 
-" print spaces between brackets
-let g:prettier#config#bracket_spacing = 'true'
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
-" none|es5|all
-let g:prettier#config#trailing_comma = 'false'
-
-"Vim-vue Configurations
-
-autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
-" enable highlighting upon opening file
-"
+"Vim-vue configurations
 autocmd FileType vue syntax sync fromstart
 
 " Disable preprocessor checks
 let g:vue_disable_pre_processors=1
 
 "Syntastic Configuration for Vue
-
 let g:syntastic_vue_checkers = ['eslint']
 let local_eslint = finddir('node_modules', '.;') . '/.bin/eslint'
 if matchstr(local_eslint, "^\/\\w") == ''
@@ -314,6 +333,10 @@ if executable(local_eslint)
     let g:syntastic_javascript_eslint_exec = local_eslint
     let g:syntastic_vue_eslint_exec = local_eslint
 endif
+
+"Sass Lint Configurations
+let g:syntastic_sass_checkers=["sasslint"]
+let g:syntastic_scss_checkers=["sasslint"]
 
 " Easy Align Mappings
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -331,6 +354,9 @@ let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
+" Setup vim-vue
+autocmd FileType vue syntax sync fromstart
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 
 " ripgrep + fzf config
 " --column: Show column number
@@ -362,3 +388,123 @@ set term=xterm-256color
 set termencoding=utf-8
 
 autocmd FileType apache setlocal commentstring=#\ %s
+
+" COC Vim configurations
+
+" https://github.com/neoclide/coc.nvim#example-vim-configuration
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" gd - go to definition of word under cursor
+nmap <silent> gd <Plug>(coc-definition)
+" gy - type definition
+nmap <silent> gy <Plug>(coc-type-definition)
+" gi - go to implementation
+nmap <silent> gi <Plug>(coc-implementation)
+" gr - find references
+nmap <silent> gr <Plug>(coc-references)
+
+" gh - get hint on whatever's under the cursor
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> gh :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
+nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
+
+" List errors
+nnoremap <silent> <leader>cl  :<C-u>CocList locationlist<cr>
+
+" list commands available in tsserver (and others)
+nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
+
+" restart when tsserver gets wonky
+nnoremap <silent> <leader>cR  :<C-u>CocRestart<CR>
+
+" view all errors
+nnoremap <silent> <leader>cl  :<C-u>CocList locationlist<CR>
+
+" manage extensions
+nnoremap <silent> <leader>cx  :<C-u>CocList extensions<cr>
+
+" rename the current word in the cursor
+nmap <leader>cr  <Plug>(coc-rename)
+nmap <leader>cf  <Plug>(coc-format-selected)
+vmap <leader>cf  <Plug>(coc-format-selected)
+
+" run code actions
+vmap <leader>ca  <Plug>(coc-codeaction-selected)
+nmap <leader>ca  <Plug>(coc-codeaction-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Create mappings for function text object, requires document symbols feature of languageserver.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
+nmap <silent> <C-r> <Plug>(coc-range-select)
+xmap <silent> <C-r> <Plug>(coc-range-select)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add status line support, for integration with other plugin, checkout `:h coc-status`
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" COC Prettier Config
+" https://github.com/neoclide/coc-prettier
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+" Suppress Go version checker
+let g:go_version_warning = 0
+
+" Limelight Mappings
+nmap <Leader>l <Plug>(Limelight)
+xmap <Leader>l <Plug>(Limelight)
+" Enable Lightvim in Goyo mode
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
