@@ -289,6 +289,10 @@ let g:prettier#quickfix_enabled = 0
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql Prettier
 
+" avoid|always
+" Prettier default: avoid
+let g:prettier#config#arrow_parens = 'always'
+
 "Override Prettier default configuration
 
 " max line length that prettier will wrap on
