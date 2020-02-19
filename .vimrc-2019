@@ -84,6 +84,7 @@ Plug 'neoclide/coc-tslint', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'} " mru and stuff
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'} " color highlighting
+Plug 'takac/vim-hardtime'
 
 " Initialize plugin system
 call plug#end()
@@ -508,3 +509,7 @@ xmap <Leader>l <Plug>(Limelight)
 " Enable Lightvim in Goyo mode
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
+
+" Enable Hardtime
+let g:hardtime_default_on = 1
+let g:hardtime_showmsg = 1
