@@ -136,3 +136,38 @@ alias :q!=:wq
 export GOPATH=$HOME/go
 #========= Set Go Executable on Directory Path
 export PATH=$HOME/go/bin/:$PATH
+
+# https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
+# Replace ag with RIPgrep
+# --files: List files that would be searched but do not search
+# --no-ignore: Do not respect .gitignore, etc...
+# --hidden: Search hidden files and folders
+# --follow: Follow symlinks
+# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# https://junegunn.kr/2015/03/browsing-git-commits-with-fzf
+# fshow - git commit browser (enter for show, ctrl-d for diff, ` toggles sort)
+fzhow() {
+  local out shas sha q k
+  while out=$(
+      git log --graph --color=always \
+          --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" "$@" |
+      fzf --ansi --multi --no-sort --reverse --query="$q" \
+          --print-query --expect=ctrl-d --toggle-sort=\`); do
+    q=$(head -1 <<< "$out")
+    k=$(head -2 <<< "$out" | tail -1)
+    shas=$(sed '1,2d;s/^[^a-z0-9]*//;/^$/d' <<< "$out" | awk '{print $1}')
+    [ -z "$shas" ] && continue
+    if [ "$k" = ctrl-d ]; then
+      git diff --color=always $shas | less -R
+    else
+      for sha in $shas; do
+        git show --color=always $sha | less -R
+      done
+    fi
+  done
+}
