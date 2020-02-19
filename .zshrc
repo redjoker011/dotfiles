@@ -114,7 +114,19 @@ alias lc='colorls -t --gs --dark'
 
 eval "$(rbenv init - zsh)"
 
-#============= Git Command Aliases =====================
-alias gcd='git checkout development' # checkout development
-alias ggpull='git pull --rebase origin $(current_branch)'
-compdef ggpull=git
+#============= Command Aliases =====================
+alias c='clear'
+alias cpr='bundle exec cap production mb:sidekiq:stop mb:unicorn:stop mb:unicorn:start mb:sidekiq:start'
+alias csr='bundle exec cap staging mb:sidekiq:stop mb:unicorn:stop mb:unicorn:start mb:sidekiq:start'
+alias rdm='bin/rails db:migrate && bin/rails db:migrate RAILS_ENV=test'
+alias rdr='bin/rails db:rollback && bin/rails db:rollback RAILS_ENV=test'
+alias rdc='bin/rails db:drop && bin/rails db:create'
+alias rds='bin/rails db:drop && bin/rails db:create && bin/setup'
+
+# Vim aliases
+# https://www.reddit.com/r/vim/comments/42fwjx/when_vim_leaves_a_trail/cza0azv
+alias :wq="echo \"This isn't nvim!\""
+alias :wq!=:wq
+alias :q=:wq
+alias :qa=:wq
+alias :q!=:wq
