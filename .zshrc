@@ -130,3 +130,9 @@ alias :wq!=:wq
 alias :q=:wq
 alias :qa=:wq
 alias :q!=:wq
+
+#============== Go Workspace Configuration ==================
+#========= Set Go Workspace
+export GOPATH=$HOME/go
+#========= Set Go Executable on Directory Path
+export PATH=$HOME/go/bin/:$PATH
