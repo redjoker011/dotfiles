@@ -113,6 +113,10 @@ alias ls='colorls -l -A --sd --dark'
 alias lc='colorls -t --gs --dark'
 
 eval "$(rbenv init - zsh)"
+#============= Git Aliases =====================
+alias gcd='git checkout development'
+alias gfstr='git flow feature start'
+alias gffin='git flow feature finish'
 
 #============= Command Aliases =====================
 alias c='clear'
@@ -122,6 +126,14 @@ alias rdm='bin/rails db:migrate && bin/rails db:migrate RAILS_ENV=test'
 alias rdr='bin/rails db:rollback && bin/rails db:rollback RAILS_ENV=test'
 alias rdc='bin/rails db:drop && bin/rails db:create'
 alias rds='bin/rails db:drop && bin/rails db:create && bin/setup'
+alias rs='bin/spring stop && rails s'
+alias rc='bin/spring stop && rails c'
+alias brt='bundle exec rake test'
+alias rt='ruby -Itest'
+alias ys='yarn serve'
+alias ysd='yarn serve:dev'
+alias ytu='yarn test:unit'
+alias yte='yarn test:e2e'
 
 # Vim aliases
 # https://www.reddit.com/r/vim/comments/42fwjx/when_vim_leaves_a_trail/cza0azv
