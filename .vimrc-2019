@@ -85,6 +85,7 @@ Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'} " mru and stuff
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'} " color highlighting
 Plug 'takac/vim-hardtime'
+Plug 'jlanzarotta/bufexplorer'
 
 " Initialize plugin system
 call plug#end()
