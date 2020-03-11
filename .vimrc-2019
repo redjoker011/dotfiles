@@ -12,8 +12,9 @@ call plug#begin('~/.vim/bundle')
 Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-airline'
 Plug 'gregsexton/MatchTag'
-Plug 'lebibin/dracula-vim'
-Plug 'arzg/vim-substrata'
+" Plug 'lebibin/dracula-vim'
+" Plug 'arzg/vim-substrata'
+Plug 'morhetz/gruvbox'
 Plug 'lilydjwg/colorizer'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -171,7 +172,7 @@ set t_Co=256
 set background=dark
 colorscheme substrata
 let g:dracula_italic = 1
-let g:airline_theme = 'dracula'
+let g:airline_theme = 'tomorrow'
 
 " May the force be with you
 nnoremap <silent> <Left> :bprev<CR>
