@@ -10,7 +10,8 @@ endif
 call plug#begin('~/.vim/bundle')
 
 Plug 'airblade/vim-gitgutter'
-Plug 'bling/vim-airline'
+" Plug 'bling/vim-airline'
+Plug 'itchyny/lightline.vim'
 Plug 'gregsexton/MatchTag'
 " Plug 'lebibin/dracula-vim'
 " Plug 'arzg/vim-substrata'
@@ -37,7 +38,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-rails'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/matchit.zip'
 Plug 'vim-scripts/nginx.vim'
@@ -171,8 +172,8 @@ set wildmenu
 set t_Co=256
 set background=dark
 colorscheme substrata
-let g:dracula_italic = 1
-let g:airline_theme = 'tomorrow'
+" let g:dracula_italic = 1
+" let g:airline_theme = 'tomorrow'
 
 " May the force be with you
 nnoremap <silent> <Left> :bprev<CR>
@@ -192,18 +193,18 @@ let g:syntastic_haml_checkers = ['haml_lint']
 " restrict html
 let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 
-" Override certain sections of airline
-call airline#parts#define_function('syntaxitem','SyntaxItem')
-function! AirlineInit()
-  let g:airline_section_x = airline#section#create(['syntaxitem',' ','tagbar','filetype'])
-endfunction
-autocmd VimEnter * call AirlineInit()
-let g:airline#extensions#tabline#enabled=1
-let g:airline_powerline_fonts=1
+" " Override certain sections of airline
+" call airline#parts#define_function('syntaxitem','SyntaxItem')
+" function! AirlineInit()
+"   let g:airline_section_x = airline#section#create(['syntaxitem',' ','tagbar','filetype'])
+" endfunction
+" autocmd VimEnter * call AirlineInit()
+" let g:airline#extensions#tabline#enabled=1
+" let g:airline_powerline_fonts=1
 
 " COC warnings via airline
-let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+" let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+" let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
 
 " Add mapping for tagbar
@@ -554,3 +555,33 @@ let g:vista#renderer#icons = {
 nnoremap <silent> <space>vs  :<C-u>Vista<CR>
 " hide vista window pane
 nnoremap <silent> <space>vc  :<C-u>Vista!<CR>
+
+" LightLine Configs
+set laststatus=2
+set noshowmode
+
+if !has('gui_running')
+  set t_Co=256
+endif
+
+let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead',
+      \   'filename': 'LightlineFilename'
+      \ },
+      \ }
+function! LightlineFilename()
+  return &filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
+        \ &filetype ==# 'unite' ? unite#get_status_string() :
+        \ &filetype ==# 'vimshell' ? vimshell#get_status_string() :
+        \ expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+endfunction
+
+let g:unite_force_overwrite_statusline = 0
+let g:vimfiler_force_overwrite_statusline = 0
+let g:vimshell_force_overwrite_statusline = 0
