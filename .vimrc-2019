@@ -637,3 +637,7 @@ let g:vimshell_force_overwrite_statusline = 0
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
 endif
+
+" Emmet Configs
+" map trigger key to comma
+let g:user_emmet_leader_key=','
