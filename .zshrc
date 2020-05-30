@@ -107,6 +107,9 @@ source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source /Users/exwire/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Basic Configs
+alias reload!=". ~/.zshrc && echo 'sourced ~/.zshrc' again"
+
 # COLORLS CONFIG
 # https://github.com/athityakumar/colorls#recommended-configurations
 alias ls='colorls -l -A --sd --dark'
@@ -142,6 +145,13 @@ alias :wq!=:wq
 alias :q=:wq
 alias :qa=:wq
 alias :q!=:wq
+
+# vim: Defaults to Neovim if exists
+if command -v nvim 2>&1 >/dev/null; then
+    alias vim='nvim'
+fi
+alias vi='vim'
+alias v='vim'
 
 #============== Go Workspace Configuration ==================
 #========= Set Go Workspace
