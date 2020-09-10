@@ -116,10 +116,14 @@ alias ls='colorls -l -A --sd --dark'
 alias lc='colorls -t --gs --dark'
 
 eval "$(rbenv init - zsh)"
+
 #============= Git Aliases =====================
 alias gcd='git checkout development'
 alias gfstr='git flow feature start'
 alias gffin='git flow feature finish'
+# Remove All local branches except master, development and current branch
+alias gbx='git branch -D `git branch | grep -vE "master|development"`'
+
 
 #============= Command Aliases =====================
 alias c='clear'
@@ -193,3 +197,14 @@ fzhow() {
     fi
   done
 }
+
+source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
+
+export TERM=xterm-256color
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+export EDITOR='nvim'
+export VISUAL='nvim'
+export PATH="$HOME/.rbenv/bin:$PATH"
