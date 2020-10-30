@@ -20,6 +20,12 @@ SPACESHIP_USER_SHOW="true"
 # zsh tmux settings
 ZSH_TMUX_AUTOSTART='true'
 
+alias mux='pgrep -vx tmux > /dev/null && \
+		tmux new -d -s delete-me && \
+		tmux run-shell ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh && \
+		tmux kill-session -t delete-me && \
+		tmux attach || tmux attach'
+
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
 # cause zsh load theme from this variable instead of
@@ -107,7 +113,6 @@ source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source /Users/exwire/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Basic Configs
 alias reload!=". ~/.zshrc && echo 'sourced ~/.zshrc' again"
 
 # COLORLS CONFIG
@@ -124,18 +129,21 @@ alias gffin='git flow feature finish'
 # Remove All local branches except master, development and current branch
 alias gbx='git branch -D `git branch | grep -vE "master|development"`'
 
-
 #============= Command Aliases =====================
 alias c='clear'
 alias cpr='bundle exec cap production mb:sidekiq:stop mb:unicorn:stop mb:unicorn:start mb:sidekiq:start'
 alias csr='bundle exec cap staging mb:sidekiq:stop mb:unicorn:stop mb:unicorn:start mb:sidekiq:start'
+alias cpds='cap production db:local:sync'
+alias csds='cap staging db:local:sync'
 alias rdm='bin/rails db:migrate && bin/rails db:migrate RAILS_ENV=test'
 alias rdr='bin/rails db:rollback && bin/rails db:rollback RAILS_ENV=test'
-alias rdc='bin/rails db:drop && bin/rails db:create'
+alias rdc='DISABLE_DATABASE_ENVIRONMENT_CHECK=1 && bin/rails db:drop && bin/rails db:create RAILS_ENV=development'
 alias rds='bin/rails db:drop && bin/rails db:create && bin/setup'
 alias rs='bin/spring stop && rails s'
 alias rc='bin/spring stop && rails c'
+alias bs='bundle exec sidekiq'
 alias brt='bundle exec rake test'
+alias br='bundle exec rake'
 alias rt='ruby -Itest'
 alias ys='yarn serve'
 alias ysd='yarn serve:dev'
@@ -149,13 +157,40 @@ alias :wq!=:wq
 alias :q=:wq
 alias :qa=:wq
 alias :q!=:wq
-
+# Map vim and vi command to nvim because nvim is cool
 # vim: Defaults to Neovim if exists
 if command -v nvim 2>&1 >/dev/null; then
     alias vim='nvim'
 fi
 alias vi='vim'
 alias v='vim'
+alias oldvim='\vim'
+
+# Useful aliases
+alias s=ssh
+alias cx='chmod +x'
+alias more=less
+alias cleanup='rm -f *.tmp *.aux *.log'
+
+# Useful functions
+
+# Make Directory and CD
+mcd() { mkdir -p $1; cd $1 }
+
+# CD to directory and list
+cdl() { cd $1; ls}
+
+# Backup file and test
+backup() { cp "$1"{,.bak};}
+
+# Global find
+gfind() { find / -iname $@ 2>/dev/null }
+
+# Local find
+lfind() { find . -iname $@ 2>/dev/null }
+
+# Search on google
+rtfm() { help $@ || man $@ || $BROWSER "http://www.google.com/search?q=$@"; }
 
 #============== Go Workspace Configuration ==================
 #========= Set Go Workspace
@@ -175,6 +210,19 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
+
+export TERM=xterm-256color
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+export EDITOR='nvim'
+export VISUAL='nvim'
+export PATH="$HOME/.rbenv/bin:$PATH"
+
+# GIT heart FZF
+# -------------
 # https://junegunn.kr/2015/03/browsing-git-commits-with-fzf
 # fshow - git commit browser (enter for show, ctrl-d for diff, ` toggles sort)
 fzhow() {
@@ -198,13 +246,69 @@ fzhow() {
   done
 }
 
-source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
+is_in_git_repo() {
+  git rev-parse HEAD > /dev/null 2>&1
+}
 
-export TERM=xterm-256color
+fzf-down() {
+  fzf --height 50% "$@" --border
+}
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+fgf() {
+  is_in_git_repo || return
+  git -c color.status=always status --short |
+  fzf-down -m --ansi --nth 2..,.. \
+    --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1}) | head -500' |
+  cut -c4- | sed 's/.* -> //'
+}
 
-export EDITOR='nvim'
-export VISUAL='nvim'
-export PATH="$HOME/.rbenv/bin:$PATH"
+fgb() {
+  is_in_git_repo || return
+  git branch -a --color=always | grep -v '/HEAD\s' | sort |
+  fzf-down --ansi --multi --tac --preview-window right:70% \
+    --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1) | head -'$LINES |
+  sed 's/^..//' | cut -d' ' -f1 |
+  sed 's#^remotes/##'
+}
+
+fgt() {
+  is_in_git_repo || return
+  git tag --sort -version:refname |
+  fzf-down --multi --preview-window right:70% \
+    --preview 'git show --color=always {} | head -'$LINES
+}
+
+fgh() {
+  is_in_git_repo || return
+  git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
+  fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
+    --header 'Press CTRL-S to toggle sort' \
+    --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -'$LINES |
+  grep -o "[a-f0-9]\{7,\}"
+}
+
+fgr() {
+  is_in_git_repo || return
+  git remote -v | awk '{print $1 "\t" $2}' | uniq |
+  fzf-down --tac \
+    --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" --remotes={1} | head -200' |
+  cut -d$'\t' -f1
+}
+
+join-lines() {
+  local item
+  while read item; do
+    echo -n "${(q)item} "
+  done
+}
+
+bind-git-helper() {
+  local c
+  for c in $@; do
+    eval "fzf-g$c-widget() { local result=\$(fzf_g$c | join-lines); zle reset-prompt; LBUFFER+=\$result }"
+    eval "zle -N fzf-g$c-widget"
+    eval "bindkey '^g^$c' fzf-g$c-widget"
+  done
+}
+bind-git-helper f b t r h
+unset -f bind-git-helper
