@@ -130,6 +130,8 @@ alias gffin='git flow feature finish'
 alias gstdu='git stash -k'
 # Remove All local branches except master, development and current branch
 alias gbx='git branch -D `git branch | grep -vE "master|development"`'
+# !!!Force Commit Ignoring Linters
+alias gcf='OVERCOMMIT_DISABLE=1 git commit --no-verify'
 
 #============= Command Aliases =====================
 alias c='clear'
