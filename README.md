@@ -1,4 +1,4 @@
-# Dotfiles
+#s Dotfiles
 Collection of helpful developer's dotfiles configurations
 * Tmux
 * Vim
@@ -30,3 +30,18 @@ cp .dotfiles/.tmux.conf.local .
 ```
 
 Then proceed to customize your ~/.tmux.conf.local copy.
+
+Note: You also need to install [nerd-font](https://github.com/ryanoasis/nerd-fonts) in order for icons to work
+
+Install Haskplex Nerd Font
+
+```
+brew install font-haskplex
+brew install font-haskplex-nerd
+```
+
+**Set Haskplex Nerd as Iterm Font**
+
+`Iterm -> User Preferences -> Profiles`
+
+select `Text` menu and select `Haskplex Nerd` font as preferred font
