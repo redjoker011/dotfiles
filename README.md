@@ -1,4 +1,4 @@
-#s Dotfiles
+#Dotfiles
 Collection of helpful developer's dotfiles configurations
 * Tmux
 * Vim
@@ -7,6 +7,8 @@ Collection of helpful developer's dotfiles configurations
 * Vscode
 
 # Installation
+
+Clone repository `git clone git@github.com:redjoker011/dotfiles.git`
 
 ## Tmux
 
@@ -19,8 +21,6 @@ brew install tmux
 apt install tmux
 ```
 https://github.com/tmux/tmux/wiki/Installing
-
-Clone repository `git clone git@github.com:redjoker011/dotfiles.git`
 
 Copy `.tmux.conf` and `.tmux.conf.local` in your local directory
 
@@ -45,3 +45,7 @@ brew install font-haskplex-nerd
 `Iterm -> User Preferences -> Profiles`
 
 select `Text` menu and select `Haskplex Nerd` font as preferred font
+
+## Git Commit Template
+
+Set git commit template using `git config --global commit.template ~/dotfiles/.git-commit-template`
