@@ -237,7 +237,3 @@ bind-git-helper() {
 }
 bind-git-helper f b t r h
 unset -f bind-git-helper
-
-# Load Color LS
-# https://github.com/trapd00r/LS_COLORS
-. ~/.local/share/LS_COLORS/lscolors.sh
