@@ -23,6 +23,7 @@ export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nomo
 #     echo -n " "
 # end
 
-starship init fish | source
+# starship init fish | source
 
+# Ensure .aliases.sh exists on $HOME
 source $HOME/.aliases.sh
