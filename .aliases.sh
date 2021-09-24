@@ -137,13 +137,9 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 
-export TERM=xterm-256color
-
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-export EDITOR='nvim'
-export VISUAL='nvim'
 export PATH="$HOME/.rbenv/bin:$PATH"
 
 # GIT heart FZF
