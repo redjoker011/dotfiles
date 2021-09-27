@@ -200,3 +200,8 @@ This section contains available commands and their usage for each packages.
 - `CTRL+L` Query and Preview Logs in a Git Repository
 - `CTRL+H` Query List of Previously Run Commands(History)
 - `CTRL+V` Query List of Environment Variables in Current Scope
+
+
+# Acknowledgements
+
+- [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) - Reference for most of git and git flow aliases
