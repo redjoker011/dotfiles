@@ -63,6 +63,14 @@ Please follow this official [guide](https://github.com/fish-shell/fish-shell#get
 - [exa](https://github.com/ogham/exa) - LS Replacement
 - [ghq](https://github.com/x-motemen/ghq) - Repository Manager like Go Get
 - [tide](https://github.com/IlanCosman/tide) - Prompt manager for Fish
+- [fzf-fish](https://github.com/PatrickF1/fzf.fish) Fzf bindings for Fish
+
+Note: This Plugins are manually installed and are required plugins for `fzf-fish`.
+Please click on each item to view installation guide
+
+- [fzf](https://github.com/junegunn/fzf#installation) Command Line Fuzzy Finder
+- [fd](https://github.com/sharkdp/fd#installation) Replacement to find
+- [bat](https://github.com/sharkdp/bat#installation) Syntax Highlightning
 
 ### Plugin Manager
 
@@ -139,3 +147,11 @@ This section contains available commands and their usage for each packages.
 #### Exa
 
 - `ll` View directory contents with color and icons
+
+#### FZF
+
+- `CTRL+ALT+F` Query File Paths and Directories
+- `CTRL+ALT+S` Query and Preview Modified Files in a Git Repository
+- `CTRL+ALT+L` Query and Preview Logs in a Git Repository
+- `CTRL+ALT+R` Query List of Previously Run Commands(History)
+- `CTRL+ALT+V` Query List of Environment Variables in Current Scope
