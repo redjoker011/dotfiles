@@ -135,12 +135,45 @@ This section contains available commands and their usage for each packages.
 
 #### Git
 
-- `gcd` Alias for git checkout
-- `gfstr` Alias for git flow feature start
-- `gffin` Alias for git flow feature finish
-- `gstdu` Stash All unstaged commits
-- `gbx` Delete all local git branches aside from main|master|development
-- `gcf` Alias for git commit disabling Overcommit(Ruby) and Husky(Node)
+- Git Flow
+  - `gflfs` Alias for git flow feature start
+  - `gflff` Alias for git flow feature finish
+  - `gflhs` Alias for git flow hotfix start
+  - `gflhf` Alias for git flow hotfix finish
+  - `gflrs` Alias for git flow release start
+  - `gflrf` Alias for git flow release finish
+
+- Stash
+  - `gstdu` Stash All unstaged commits
+
+- Branch
+  - `gb` Display existing branches
+  - `gba` Display all branches
+  - `gbD` Delete branch
+  - `gbx` Delete all local git branches aside from main|master|development
+
+- Commit
+  - `ga` Alias for git add
+  - `gaa` Alias for git add --al
+  - `gst` Alias for git status
+  - `gcp` Alias for git cherry-pick
+  - `gc` Alias for git commit -v
+
+  - `gcf` Alias for git commit disabling Overcommit(Ruby) and Husky(Node)
+
+- Checkout
+  - `gcm` Checkout to main branch
+  - `gcd` Checkout to development branch
+  - `gcb` Checkout to new branch e.g gcb feature/test1
+  - `gco` Alias to git checkout
+
+- History
+  - `gbl` Alias to git blame -b -w
+  - `grb` Alias to git rebase
+  - `grba` Alias to git rebase --abort
+  - `grbc` Alias to git rebase --continue
+  - `grbi` Alias to git rebase -i
+
 
 #### Yarn
 
