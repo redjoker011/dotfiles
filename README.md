@@ -55,6 +55,21 @@ Set git commit template using `git config --global commit.template ~/dotfiles/.g
 
 Please follow this official [guide](https://github.com/fish-shell/fish-shell#getting-fish) on installing Fish on your respective platforms.
 
+### Plugins
+
+- [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish)
+- [peco](https://github.com/peco/peco)
+- [z](https://github.com/jethrokuan/z)
+- [exa](https://github.com/ogham/exa)
+
+### Plugin Manager
+
+Install [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish) as plugin manager
+
+```
+curl -L https://get.oh-my.fish > install
+fish install --path=~/.local/share/omf --config=~/.config/fish/omf
+```
 
 # Available Commands
 
