@@ -55,6 +55,21 @@ Set git commit template using `git config --global commit.template ~/dotfiles/.g
 
 Please follow this official [guide](https://github.com/fish-shell/fish-shell#getting-fish) on installing Fish on your respective platforms.
 
+Then create a symlink for `dotfiles/.config/fish` on your `.config` directory
+
+```
+$ cd dotfiles
+$ ln -s .config/fish $HOME/.config
+```
+
+### Plugin Manager
+
+Install [fisher](https://github.com/jorgebucaran/fisher) as plugin manager
+
+```
+curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+```
+
 ### Plugins
 
 - [fisher](https://github.com/jorgebucaran/fisher) - Fish Plugin Manager
@@ -71,13 +86,12 @@ Please click on each item to view installation guide
 - [fd](https://github.com/sharkdp/fd#installation) Replacement to find
 - [bat](https://github.com/sharkdp/bat#installation) Syntax Highlightning
 
-### Plugin Manager
+Note: Check this [guide](https://fishshell.com/docs/current/#default-shell) on how to make fish your default shell
 
-Install [fisher](https://github.com/jorgebucaran/fisher) as plugin manager
+TLDR;
 
-```
-curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
-```
+- Add the line /usr/local/bin/fish to /etc/shells.
+- Change your default shell with chsh -s /usr/local/bin/fish.
 
 # Commands and Bindings
 
