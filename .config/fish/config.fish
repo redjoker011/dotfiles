@@ -29,5 +29,10 @@ if type -q exa
   alias ll "exa -l -g --icons"
 end
 
+# Override Default fzf bindings
+# Change bindings based on your preference
+fzf_configure_bindings --git_status=\cs --history=\ch --variables=\cv --directory=\cf --git_log=\cl
+
+
 # Ensure .aliases.sh exists on $HOME
 source $HOME/.aliases.sh

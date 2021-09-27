@@ -40,8 +40,5 @@ function fzf_configure_bindings --description "Installs the default key bindings
             bind --erase -- $key_sequences
             bind --erase --mode insert -- $key_sequences
         end
-
-        test -n \e\cx && bind --mode insert \e\cx _fzf_search_directory
-        bind \cx _fzf_search_directory
     end
 end
