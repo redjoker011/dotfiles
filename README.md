@@ -64,11 +64,10 @@ Please follow this official [guide](https://github.com/fish-shell/fish-shell#get
 
 ### Plugin Manager
 
-Install [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish) as plugin manager
+Install [fisher](https://github.com/jorgebucaran/fisher) as plugin manager
 
 ```
-curl -L https://get.oh-my.fish > install
-fish install --path=~/.local/share/omf --config=~/.config/fish/omf
+curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 ```
 
 # Available Commands
