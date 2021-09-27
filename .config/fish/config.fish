@@ -29,9 +29,5 @@ if type -q exa
   alias ll "exa -l -g --icons"
 end
 
-# peco
-bind \cr peco_select_history # Bind for peco select history to Ctrl+R
-bind \cf peco_change_directory # Bind for peco change directory to Ctrl+F
-
 # Ensure .aliases.sh exists on $HOME
 source $HOME/.aliases.sh

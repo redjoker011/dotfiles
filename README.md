@@ -58,7 +58,6 @@ Please follow this official [guide](https://github.com/fish-shell/fish-shell#get
 ### Plugins
 
 - [fisher](https://github.com/jorgebucaran/fisher) - Fish Plugin Manager
-- [peco](https://github.com/peco/peco) - Interactive Filtering Tool
 - [z](https://github.com/jethrokuan/z) - Directory Jumping Plugin
 - [exa](https://github.com/ogham/exa) - LS Replacement
 - [ghq](https://github.com/x-motemen/ghq) - Repository Manager like Go Get
@@ -135,11 +134,6 @@ This section contains available commands and their usage for each packages.
 
 ### Bindings
 
-#### Peco
-
-- `CTRL + r` View Directories
-- `CTRL + f` View History
-
 #### Z
 
 - `z` Let's you jump on between directories
@@ -150,8 +144,16 @@ This section contains available commands and their usage for each packages.
 
 #### FZF
 
-- `CTRL+ALT+F` Query File Paths and Directories
-- `CTRL+ALT+S` Query and Preview Modified Files in a Git Repository
-- `CTRL+ALT+L` Query and Preview Logs in a Git Repository
-- `CTRL+ALT+R` Query List of Previously Run Commands(History)
-- `CTRL+ALT+V` Query List of Environment Variables in Current Scope
+- `CTRL+D` Query File Paths and Directories
+- `CTRL+S` Query and Preview Modified Files in a Git Repository
+- `CTRL+L` Query and Preview Logs in a Git Repository
+- `CTRL+H` Query List of Previously Run Commands(History)
+- `CTRL+V` Query List of Environment Variables in Current Scope
+
+Ensure to run this command on shell
+
+```
+fzf_configure_bindings --git_status=\cs --history=\ch --variables=\cv --directory=\cd --git_log=\cl
+```
+
+You can also use this command to change bindings on fzf functions. Check configuration options [here](https://github.com/PatrickF1/fzf.fish#configuration)
