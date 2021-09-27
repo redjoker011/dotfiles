@@ -1,3 +1,5 @@
+fish_add_path /opt/homebrew/bin
+
 # set -g theme_powerline_fonts yes
 set -g theme_nerd_fonts yes
 
@@ -25,32 +27,41 @@ export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nomo
 
 # starship init fish | source
 
-if type -q exa
-  alias ll "exa -l -g --icons"
-end
 
 # Override Default fzf bindings
 # Change bindings based on your preference
 fzf_configure_bindings --git_status=\cs --history=\ch --variables=\cv --directory=\cf --git_log=\cl
 
+# =============== General Aliases =====================
 alias reload "source ~/.config/fish/config.fish | echo "Reloaded!" "
+
+if type -q exa
+  alias ll "exa -l -g --icons"
+end
+
+alias mux='pgrep -vx tmux > /dev/null && \
+		tmux new -d -s delete-me && \
+		tmux run-shell ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh && \
+		tmux kill-session -t delete-me && \
+		tmux attach || tmux attach'
 
 #============= Git Aliases =====================
 # Refs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
 
 # Check if main exists and use instead of master
-function git_main_branch
-  command git rev-parse --git-dir &>/dev/null || return local ref
-  for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk}
-    if command git show-ref -q --verify $ref
-      echo "$ref"
-      return
-    end
-  end
-  echo master
-end
+# function git_main_branch
+#   command git rev-parse --git-dir &>/dev/null || return local ref
+#   for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk}
+#     if command git show-ref -q --verify $ref
+#       echo "$ref"
+#       return
+#     end
+#   end
+#   echo master
+# end
 
-alias gcm='git checkout '(git_main_branch)''
+# alias gcm='git checkout '(git_main_branch)''
+
 alias gcd='git checkout development'
 alias gcb='git checkout -b'
 alias gco='git checkout'
