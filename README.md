@@ -167,6 +167,11 @@ This section contains available commands and their usage for each packages.
   - `gcb` Checkout to new branch e.g gcb feature/test1
   - `gco` Alias to git checkout
 
+- Pull
+  - `ggpur` Pull and Rebase
+  - `ggpull` Pull Remote Changes
+  - `ggpush` Push Local Changes to Remote
+
 - History
   - `gbl` Alias to git blame -b -w
   - `grb` Alias to git rebase

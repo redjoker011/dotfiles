@@ -61,6 +61,10 @@ alias mux='pgrep -vx tmux > /dev/null && \
 # end
 
 # alias gcm='git checkout '(git_main_branch)''
+#
+function git_current_branch
+	git branch --show-current
+end
 
 alias gcd='git checkout development'
 alias gcb='git checkout -b'
@@ -96,6 +100,10 @@ alias grb='git rebase'
 alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
 alias grbi='git rebase -i'
+
+alias ggpur='git pull --rebase origin '(git_current_branch)''
+alias ggpull='git pull origin '(git_current_branch)''
+alias ggpush='git push origin '(git_current_branch)''
 
 # Stash Unstaged Commits
 alias gstdu='git stash -k'
