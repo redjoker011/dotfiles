@@ -57,10 +57,12 @@ Please follow this official [guide](https://github.com/fish-shell/fish-shell#get
 
 ### Plugins
 
-- [oh-my-fish](https://github.com/oh-my-fish/oh-my-fish)
-- [peco](https://github.com/peco/peco)
-- [z](https://github.com/jethrokuan/z)
-- [exa](https://github.com/ogham/exa)
+- [fisher](https://github.com/jorgebucaran/fisher) - Fish Plugin Manager
+- [peco](https://github.com/peco/peco) - Interactive Filtering Tool
+- [z](https://github.com/jethrokuan/z) - Directory Jumping Plugin
+- [exa](https://github.com/ogham/exa) - LS Replacement
+- [ghq](https://github.com/x-motemen/ghq) - Repository Manager like Go Get
+- [tide](https://github.com/IlanCosman/tide) - Prompt manager for Fish
 
 ### Plugin Manager
 
@@ -70,14 +72,15 @@ Install [fisher](https://github.com/jorgebucaran/fisher) as plugin manager
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 ```
 
-# Available Commands
+# Commands and Bindings
 
 This section contains available commands and their usage for each packages.
 
 ## Fish
-- `reload` Reload fish config
 
-### General
+### Commands
+
+#### General
 
 - `c` Alias to clear
 - `s` Alias to ssh
@@ -90,8 +93,9 @@ This section contains available commands and their usage for each packages.
 - `lfind` Locally search for a file e.g `lfind README.md`
 - `mcd` Create directory and Navigate to it `mcd dotfiles`
 - `vim` Open Neovim if exists and vim by default
+- `reload` Reload fish config
 
-### Ruby on Rails
+#### Ruby on Rails
 
 - `ber` Alias to bundle exec rake
 - `rdm` Alis to bundle exec rake db:migrate
@@ -104,7 +108,7 @@ This section contains available commands and their usage for each packages.
 - `brt` Alias to bundle exec rake:test
 - `rt` Alias to Minitest ruby -Itest
 
-### Git
+#### Git
 
 - `gcd` Alias for git checkout
 - `gfstr` Alias for git flow feature start
@@ -113,10 +117,25 @@ This section contains available commands and their usage for each packages.
 - `gbx` Delete all local git branches aside from main|master|development
 - `gcf` Alias for git commit disabling Overcommit(Ruby) and Husky(Node)
 
-### Yarn
+#### Yarn
 
 - `ys` Alias to yarn serve
 - `yss` Alias to yarn serve:dev
 - `ystd` Alias to yarn start:dev
 - `ytu` Alias to yarn test:unit
 - `yte` Alias to yarn test:e2e
+
+### Bindings
+
+#### Peco
+
+- `CTRL + r` View Directories
+- `CTRL + f` View History
+
+#### Z
+
+- `z` Let's you jump on between directories
+
+#### Exa
+
+- `ll` View directory contents with color and icons
