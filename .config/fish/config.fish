@@ -87,6 +87,10 @@ alias gbD='git branch -D'
 
 alias gstaa='git stash apply'
 
+alias glg='git log --stat'
+alias glgp='git log --stat -p'
+alias glods="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short"
+
 # Git Flow Aliases
 # Ref: https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git-flow/git-flow.plugin.zsh
 alias gflfs='git flow feature start'

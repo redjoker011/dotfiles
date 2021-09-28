@@ -179,6 +179,11 @@ This section contains available commands and their usage for each packages.
   - `grbc` Alias to git rebase --continue
   - `grbi` Alias to git rebase -i
 
+- Log
+  - `glg` Alias to git log --stat
+  - `glgp` Alias to git log --stat -p
+  - `glgp` Alias to git log --graph with styles
+
 
 #### Yarn
 
