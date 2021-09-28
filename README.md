@@ -178,6 +178,7 @@ This section contains available commands and their usage for each packages.
   - `grba` Alias to git rebase --abort
   - `grbc` Alias to git rebase --continue
   - `grbi` Alias to git rebase -i
+  - `gm` Alias to git merge
 
 - Log
   - `glg` Alias to git log --stat

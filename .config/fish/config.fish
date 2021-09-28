@@ -109,6 +109,8 @@ alias ggpur='git pull --rebase origin '(git_current_branch)''
 alias ggpull='git pull origin '(git_current_branch)''
 alias ggpush='git push origin '(git_current_branch)''
 
+alias gm='git merge'
+
 # Stash Unstaged Commits
 alias gstdu='git stash -k'
 
