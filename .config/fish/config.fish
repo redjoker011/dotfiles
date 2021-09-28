@@ -72,8 +72,6 @@ alias gb='git branch'
 alias gba='git branch -a'
 alias gbD='git branch -D'
 
-alias gstaa='git stash apply'
-
 alias glg='git log --stat'
 alias glgp='git log --stat -p'
 alias glods="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short"
@@ -100,6 +98,8 @@ alias gm='git merge'
 
 # Stash Unstaged Commits
 alias gstdu='git stash -k'
+alias gsta='git stash push'
+alias gstaa='git stash apply'
 
 # Remove All local branches except master, development and current branch
 alias gbx='git branch -D `git branch | grep -vE "main|master|development"`'

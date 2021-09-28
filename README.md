@@ -145,7 +145,9 @@ This section contains available commands and their usage for each packages.
   - `gflrf` Alias for git flow release finish
 
 - Stash
-  - `gstdu` Stash All unstaged commits
+  - `gstdu` Stash All unstaged changes
+  - `gsta` Stash unstaged changes
+  - `gstaa` Apply latest Stashed Changes
 
 - Branch
   - `gb` Display existing branches
