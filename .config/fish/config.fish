@@ -13,21 +13,6 @@ export EDITOR="nvim"
 # sets vim as manpager
 export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nomod nolist noma' -\""
 
-# FZF settings {{{
- # set -gx FZF_DEFAULT_COMMAND 'rg --files --ignore --smart-case --hidden --follow --no-messages --ignore-file ~/.gitignore'
-# }}}
-
-# Set the prompt
-# function fish_prompt
-#     echo -n (set_color red)"$USER@"(prompt_hostname)"❯"
-#     echo -n (set_color cyan)(prompt_pwd)"❯"
-#     echo -n (set_color red)(git branch 2> /dev/null | awk '{print $2}' | sed '/^\s*$/d')"❯"
-#     echo -n " "
-# end
-
-# starship init fish | source
-
-
 # Override Default fzf bindings
 # Change bindings based on your preference
 fzf_configure_bindings --git_status=\cs --history=\ch --variables=\cv --directory=\cf --git_log=\cl
