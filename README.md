@@ -77,6 +77,7 @@ Install all required plugins using `fisher update`
 - [fisher](https://github.com/jorgebucaran/fisher) - Fish Plugin Manager
 - [z](https://github.com/jethrokuan/z) - Directory Jumping Plugin
 - [exa](https://github.com/ogham/exa) - LS Replacement
+  - If exa doesn't work you might need to install it manually by following this [guide](https://github.com/ogham/exa#installation) then try `ll` command on your terminal
 - [ghq](https://github.com/x-motemen/ghq) - Repository Manager like Go Get
 - [tide](https://github.com/IlanCosman/tide) - Prompt manager for Fish
   - Run `tide configure` on your terminal to configure Prompt Style
