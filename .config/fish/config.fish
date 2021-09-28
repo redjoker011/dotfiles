@@ -49,6 +49,7 @@ alias mux='pgrep -vx tmux > /dev/null && \
 # Refs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
 
 # Check if main exists and use instead of master
+# https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh#L33
 function git_main_branch
   command git rev-parse --git-dir &>/dev/null || return local ref
   for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk}
