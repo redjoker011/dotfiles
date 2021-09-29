@@ -36,7 +36,7 @@ alias mux='pgrep -vx tmux > /dev/null && \
 # Check if main exists and use instead of master
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh#L33
 function git_main_branch
-  command git rev-parse --git-dir &>/dev/null || return local ref
+  command git rev-parse --git-dir &>/dev/null || return $ref
   for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk}
     if command git show-ref -q --verify $ref
       set branch (string split -r -m1 / $ref)
