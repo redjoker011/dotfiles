@@ -144,3 +144,5 @@ alias s=ssh
 alias cx='chmod +x'
 alias more=less
 alias cleanup='rm -f *.tmp *.aux *.log'
+
+set PYENV_ROOT "/opt/homebrew/bin/pyenv"
