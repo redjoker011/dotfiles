@@ -145,4 +145,9 @@ alias cx='chmod +x'
 alias more=less
 alias cleanup='rm -f *.tmp *.aux *.log'
 
+
 set PYENV_ROOT "/opt/homebrew/bin/pyenv"
+
+# Temporarily bind CTRL+X to _fzf_search_git_status_with_preview
+# !Experimental
+bind \cx _fzf_search_git_status_with_preview
