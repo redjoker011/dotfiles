@@ -1,5 +1,5 @@
-# functions/__fzf_preview_changed_file.fish
-
+# https://github.com/ovv/fzf.fish/blob/5a7d0404c77f0acd81c7b440e21cf28a551c704c/functions/__fzf_preview_changed_file.fish
+#
 function _fzf_preview_changed_file
     set git_status (string sub --length 2 $argv[1])
 

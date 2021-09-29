@@ -1,3 +1,5 @@
+# https://github.com/ovv/fzf.fish/blob/5a7d0404c77f0acd81c7b440e21cf28a551c704c/functions/__fzf_search_git_status.fish
+
 function _fzf_search_git_status_with_preview --description "Search the output of git status. Replace the current token with the selected file paths."
     if not git rev-parse --git-dir >/dev/null 2>&1
         echo '_fzf_search_git_status: Not in a git repository.' >&2
