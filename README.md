@@ -6,6 +6,7 @@ Collection of helpful developer's dotfiles configurations
 * Git Commit Message Template
 * Vscode
 * Fish
+* Starship(Shell Prompt)
 
 # Installation
 
@@ -69,10 +70,6 @@ Then create a symlink for `dotfiles/.config/fish` on your `.config` directory
 $ cd dotfiles
 $ ln -s .config/fish $HOME/.config
 ```
-
-### Pre-requisites
-
-- [starship](https://starship.rs/guide/#🚀-installation) - Shell Prompt
 
 ### Plugin Manager
 
@@ -224,6 +221,25 @@ This section contains available commands and their usage for each packages.
 - `CTRL+H` Query List of Previously Run Commands(History)
 - `CTRL+V` Query List of Environment Variables in Current Scope
 
+## Starship
+
+### Installation
+
+- [starship](https://starship.rs/guide/#🚀-installation) - Shell Prompt
+
+### Configuration
+
+Symlink .starship.toml to your `.config` directory
+
+```
+$ cd dotfiles
+$ ln -s .config/.starship.toml $HOME/.config/starship.toml
+```
+
+### Configuration
+
+You can check the official [guide](https://starship.rs/config/#prompt) to
+configure starship if you don't want to use our default configuration :)
 
 # Acknowledgements
 
