@@ -62,6 +62,10 @@ $ cd dotfiles
 $ ln -s .config/fish $HOME/.config
 ```
 
+### Pre-requisites
+
+- [starship](https://starship.rs/guide/#🚀-installation) - Shell Prompt
+
 ### Plugin Manager
 
 Install [fisher](https://github.com/jorgebucaran/fisher) as plugin manager
@@ -79,9 +83,6 @@ Install all required plugins using `fisher update`
 - [exa](https://github.com/ogham/exa) - LS Replacement
   - If exa doesn't work you might need to install it manually by following this [guide](https://github.com/ogham/exa#installation) then try `ll` command on your terminal
 - [ghq](https://github.com/x-motemen/ghq) - Repository Manager like Go Get
-- [tide](https://github.com/IlanCosman/tide) - Prompt manager for Fish
-  - Run `tide configure` on your terminal to configure Prompt Style
-  - Also check install this [Nerd Font](https://github.com/IlanCosman/tide#meslo-nerd-font) for icons to work 
 - [fzf-fish](https://github.com/PatrickF1/fzf.fish) Fzf bindings for Fish
 
 Note: This Plugins are manually installed and are required plugins for `fzf-fish`.
