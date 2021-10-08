@@ -167,7 +167,6 @@ This section contains available commands and their usage for each packages.
   - `gst` Alias for git status
   - `gcp` Alias for git cherry-pick
   - `gc` Alias for git commit -v
-
   - `gcf` Alias for git commit disabling Overcommit(Ruby) and Husky(Node)
 
 - Checkout
