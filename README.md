@@ -1,12 +1,12 @@
 #Dotfiles
-Collection of helpful developer's dotfiles configurations
-* Tmux
-* Vim
-* Zsh
-* Git Commit Message Template
-* Vscode
-* Fish
-* Starship(Shell Prompt)
+
+Collection of helpful tools configurations I used for day by day
+coding ⌨️
+
+* [Tmux](#tmux)
+* [Git Commit Message Template](#git-commit-template)
+* [Fish(Shell)](#fish)
+* [Starship(Shell Prompt)](#starship)
 
 # Installation
 
