@@ -49,8 +49,22 @@ end
 
 alias gcm='git checkout '(git_main_branch)''
 
+function __git_prompt_git
+  echo (GIT_OPTIONAL_LOCKS=0 command git $argv)
+end
+
 function git_current_branch
-	git branch --show-current
+  command git symbolic-ref --short HEAD 2>/dev/null
+end
+
+function _git_current_branch
+  set -l ref (__git_prompt_git symbolic-ref --short HEAD 2> /dev/null)
+  set -l ret $status
+  if test ! $ret = 0
+    test $ret -eq 128 && return  # no git repo.
+    set ref (__git_prompt_git rev-parse --short HEAD 2> /dev/null) || return
+  end
+  echo {$ref#refs/heads/}
 end
 
 alias gcd='git checkout development'
