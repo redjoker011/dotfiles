@@ -1,7 +1,7 @@
-#Dotfiles
-
 Collection of helpful tools configurations I used for day by day
 coding ⌨️
+
+![](./assets/ui.png)
 
 * [Tmux](#tmux)
 * [Git Commit Message Template](#git-commit-template)
