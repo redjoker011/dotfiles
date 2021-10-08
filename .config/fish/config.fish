@@ -1,5 +1,7 @@
 fish_add_path /opt/homebrew/bin
 
+starship init fish | source
+
 # set -g theme_powerline_fonts yes
 set -g theme_nerd_fonts yes
 
