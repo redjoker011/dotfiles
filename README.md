@@ -47,6 +47,14 @@ brew install font-haskplex-nerd
 
 select `Text` menu and select `Haskplex Nerd` font as preferred font
 
+
+### Commands
+
+For Tmux commands you can check the official (guide)(https://github.com/gpakosz/.tmux#bindings) on which we fork our
+`.tmux.conf` config
+
+TLDR; I prefer use CTRL+A as tmux prefix :)
+
 ## Git Commit Template
 
 Set git commit template using `git config --global commit.template ~/dotfiles/.git-commit-template`
