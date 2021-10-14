@@ -104,6 +104,10 @@ TLDR;
 - Add the line /usr/local/bin/fish to /etc/shells.
 - Change your default shell with chsh -s /usr/local/bin/fish.
 
+Note: Brew installs fish on `/opt/homebrew/bin/fish` so you might need to
+symlink it on `/usr/local/bin` for it to work. e.g `sudo ln -s
+/opt/homebrew/bin/fish /usr/local/bin`
+
 # Commands and Bindings
 
 This section contains available commands and their usage for each packages.
