@@ -62,11 +62,13 @@ end
 function _git_current_branch
   set -l ref (__git_prompt_git symbolic-ref --short HEAD 2> /dev/null)
   set -l ret $status
+
   if test ! $ret = 0
     test $ret -eq 128 && return  # no git repo.
     set ref (__git_prompt_git rev-parse --short HEAD 2> /dev/null) || return
   end
-  echo {$ref#refs/heads/}
+  # echo {$ref#refs/heads/}
+  echo $ref
 end
 
 alias gcd='git checkout development'
@@ -118,7 +120,7 @@ alias gsta='git stash push'
 alias gstaa='git stash apply'
 
 # Remove All local branches except master, development and current branch
-alias gbx='git branch -D `git branch | grep -vE "main|master|development"`'
+alias gbx='git branch | grep -v "master\|main\|development" | xargs git branch -D'
 
 # !!!Force Commit Ignoring Linters
 alias gcf='OVERCOMMIT_DISABLE=1 git commit --no-verify'
@@ -161,9 +163,10 @@ alias cx='chmod +x'
 alias more=less
 alias cleanup='rm -f *.tmp *.aux *.log'
 
-
 set PYENV_ROOT "/opt/homebrew/bin/pyenv"
 
 # Temporarily bind CTRL+X to _fzf_search_git_status_with_preview
 # !Experimental
 bind \cx _fzf_search_git_status_with_preview
+
+export PATH="$PATH:$HOME/Library/PackageManager/bin"
