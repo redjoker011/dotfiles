@@ -300,6 +300,15 @@ tmux_conf_copy_to_os_clipboard=false
 # Use Tmux Resurrect in plugin dir
 # run-shell ~/clone/path/resurrect.tmux
 
+# Tmux Copy to Clipboard
+# https://unix.stackexchange.com/a/596898
+# Set Key mode to vi
+setw -g mode-keys vi
+
+bind-key -T copy-mode-vi 'v' send -X begin-selection
+bind-key -T copy-mode-vi 'r' send -X rectangle-toggle
+bind-key -T copy-mode-vi 'y' send -X copy-pipe-and-cancel
+
 ###########################
 ##  Tmux Plugin Manager
 # Move this to .tmux.conf since prefix + I look plugins there
@@ -329,14 +338,12 @@ set -g @resurrect-strategy-nvim 'session'
 set -g @continuum-boot-options 'iterm,fullscreen'
 
 # Memory, CPU Load in tmux status bar
-set -g @plugin 'thewtex/tmux-mem-cpu-load'
+# set -g @plugin 'thewtex/tmux-mem-cpu-load'
 
 ## Plugin Configs
 
 # Enable vim sensible
 set -g focus-events on
-
-bind-key -T copy-mode-vi y send-keys -X copy-pipe "reattach-to-user-namespace pbcopy" \; display-message "Copied to clipboard"
 
 # Define script when installed via tpm
 set -g status-right "#[fg=green]#($TMUX_PLUGIN_MANAGER_PATH/tmux-mem-cpu-load/tmux-mem-cpu-load --colors --powerline-right --interval 2)#[default]"
