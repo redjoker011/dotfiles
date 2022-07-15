@@ -72,6 +72,7 @@ function _git_current_branch
 end
 
 alias gcd='git checkout development'
+alias gcds='git checkout dev'
 alias gcb='git checkout -b'
 alias gco='git checkout'
 
@@ -175,3 +176,12 @@ set -Ux fish_user_paths $HOME/.rbenv/bin $fish_user_paths
 
 # Initialize Ruby Manager rbenv
 status --is-interactive; and rbenv init - fish | source
+
+# Initialize nvm
+function nvm
+    bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
+end
+
+# This is pre-requisite for Omnisharp-vim to work
+# @see issue: https://github.com/OmniSharp/omnisharp-vim/issues/798
+export DOTNET_ROOT=/usr/local/share/dotnet
