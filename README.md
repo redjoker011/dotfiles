@@ -12,7 +12,9 @@ coding ⌨️
 
 Clone repository `git clone git@github.com:redjoker011/dotfiles.git`
 
-## Tmux
+## Pre-requisites
+
+### Tmux
 
 Install tmux
 
@@ -35,19 +37,27 @@ Then proceed to customize your ~/.tmux.conf.local copy.
 
 Note: You also need to install [nerd-font](https://github.com/ryanoasis/nerd-fonts) in order for icons to work
 
+### Nerd Font
+
 Install Haskplex Nerd Font
 
 ```
-brew install font-haskplex
-brew install font-haskplex-nerd
+$ brew tap huytd/cask-fonts
+
+# Install Haskplex font
+$ brew cask install font-haskplex
+
+# Install Haskplex Nerd font
+$ brew cask install font-haskplex-nerd
 ```
+
+source: https://github.com/huytd/haskplex-font
 
 **Set Haskplex Nerd as Iterm Font**
 
 `Iterm -> User Preferences -> Profiles`
 
 select `Text` menu and select `Haskplex Nerd` font as preferred font
-
 
 ### Commands
 
