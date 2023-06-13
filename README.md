@@ -59,6 +59,14 @@ source: https://github.com/huytd/haskplex-font
 
 select `Text` menu and select `Haskplex Nerd` font as preferred font
 
+### Reattach to namespace
+
+```
+brew install reattach-to-user-namespace
+```
+
+
+
 ### Commands
 
 For Tmux commands you can check the official (guide)(https://github.com/gpakosz/.tmux#bindings) on which we fork our
