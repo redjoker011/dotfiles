@@ -1,5 +1,4 @@
-Collection of helpful tools configurations I used for day by day
-coding ⌨️
+Collection of helpful tool configurations that I used on my day by day coding ⌨️
 
 ![](./assets/ui.png)
 
@@ -14,29 +13,6 @@ Clone repository `git clone git@github.com:redjoker011/dotfiles.git`
 
 ## Pre-requisites
 
-### Tmux
-
-Install tmux
-
-```
-# MacOs
-brew install tmux
-# Ubuntu
-apt install tmux
-```
-https://github.com/tmux/tmux/wiki/Installing
-
-Copy `.tmux.conf` and `.tmux.conf.local` in your local directory
-
-```
-ln -s -f .dotfiles/.tmux.conf
-cp .dotfiles/.tmux.conf.local .
-```
-
-Then proceed to customize your ~/.tmux.conf.local copy.
-
-Note: You also need to install [nerd-font](https://github.com/ryanoasis/nerd-fonts) in order for icons to work
-
 ### Nerd Font
 
 Install Haskplex Nerd Font
@@ -50,35 +26,9 @@ $ brew cask install font-haskplex
 # Install Haskplex Nerd font
 $ brew cask install font-haskplex-nerd
 ```
-
 source: https://github.com/huytd/haskplex-font
 
-**Set Haskplex Nerd as Iterm Font**
-
-`Iterm -> User Preferences -> Profiles`
-
-select `Text` menu and select `Haskplex Nerd` font as preferred font
-
-### Reattach to namespace
-
-```
-brew install reattach-to-user-namespace
-```
-
-
-
-### Commands
-
-For Tmux commands you can check the official (guide)(https://github.com/gpakosz/.tmux#bindings) on which we fork our
-`.tmux.conf` config
-
-TLDR; I prefer use CTRL+A as tmux prefix :)
-
-## Git Commit Template
-
-Set git commit template using `git config --global commit.template ~/dotfiles/.git-commit-template`
-
-## Fish
+### Fish
 
 Please follow this official [guide](https://github.com/fish-shell/fish-shell#getting-fish) on installing Fish on your respective platforms.
 
@@ -89,7 +39,7 @@ $ cd dotfiles
 $ ln -s .config/fish $HOME/.config
 ```
 
-### Plugin Manager
+#### Plugin Manager
 
 Install [fisher](https://github.com/jorgebucaran/fisher) as plugin manager
 
@@ -99,7 +49,7 @@ curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fi
 
 Install all required plugins using `fisher update`
 
-### Plugins
+##### Plugins
 
 - [fisher](https://github.com/jorgebucaran/fisher) - Fish Plugin Manager
 - [z](https://github.com/jethrokuan/z) - Directory Jumping Plugin
@@ -126,15 +76,98 @@ Note: Brew installs fish on `/opt/homebrew/bin/fish` so you might need to
 symlink it on `/usr/local/bin` for it to work. e.g `sudo ln -s
 /opt/homebrew/bin/fish /usr/local/bin`
 
-# Commands and Bindings
 
-This section contains available commands and their usage for each packages.
+## Terminal Based Config
 
-## Fish
+### [Iterm2](https://iterm2.com/) + [Tmux](https://github.com/tmux/tmux/wiki)
+
+### Tmux
+
+Install Tmux
+
+```
+# MacOs
+brew install tmux
+# Ubuntu
+apt install tmux
+```
+https://github.com/tmux/tmux/wiki/Installing
+
+Copy `.tmux.conf` and `.tmux.conf.local` in your local directory
+
+```
+cp /path-to-dotfiles/.tmux.conf
+cp /path-to-dotfiles/.tmux.conf.local .
+```
+
+Then proceed to customize your ~/.tmux.conf.local copy.
+
+Note: You also need to install [nerd-font](https://github.com/ryanoasis/nerd-fonts) in order for icons to work
+
+**Set Haskplex Nerd as Iterm Font**
+
+`Iterm -> User Preferences -> Profiles`
+
+select `Text` menu and select `Haskplex Nerd` font as preferred font
+
+### Reattach to namespace
+
+```
+brew install reattach-to-user-namespace
+```
+
+## [Kitty](https://sw.kovidgoyal.net/kitty/conf/#shortcut-kitty.Next-tab)
+
+Copy kitty config in `~/.config` directory from your Home folder
+
+```
+ln -s /path-to-dotfiles/.config/kitty ~/.config
+```
+
+### Other Utilities
+
+#### Git Commit Template
+
+Set git commit template using `git config --global commit.template ~/dotfiles/.git-commit-template`
+
+#### Starship
+
+##### Installation
+
+- [starship](https://starship.rs/guide/#🚀-installation) - Customizable Shell Prompt
+
+##### Configuration
+
+Symlink .starship.toml to your `.config` directory
+
+```
+$ cd dotfiles
+$ ln -s .config/.starship.toml $HOME/.config/starship.toml
+```
+
+##### Configuration
+
+You can check the official [guide](https://starship.rs/config/#prompt) to
+configure starship if you don't want to use our default configuration :)
+
+
+
+
+## Commands and Bindings
+
+For Tmux commands you can check the official (guide)(https://github.com/gpakosz/.tmux#bindings) on which we fork our
+`.tmux.conf` config
+
+TLDR; I prefer use CTRL+A as tmux prefix :)
+
 
 ### Commands
 
-#### General
+This section contains available commands and their usage for each packages.
+
+#### Fish
+
+##### General
 
 - `c` Alias to clear
 - `s` Alias to ssh
@@ -149,7 +182,7 @@ This section contains available commands and their usage for each packages.
 - `vim` Open Neovim if exists and vim by default
 - `reload` Reload fish config
 
-#### Ruby on Rails
+##### Ruby on Rails
 
 - `ber` Alias to bundle exec rake
 - `rdm` Alis to bundle exec rake db:migrate
@@ -162,7 +195,7 @@ This section contains available commands and their usage for each packages.
 - `brt` Alias to bundle exec rake:test
 - `rt` Alias to Minitest ruby -Itest
 
-#### Git
+##### Git
 
 - Git Flow
   - `gflfs` Alias for git flow feature start
@@ -216,7 +249,7 @@ This section contains available commands and their usage for each packages.
   - `glgp` Alias to git log --graph with styles
 
 
-#### Yarn
+##### Yarn
 
 - `ys` Alias to yarn serve
 - `yss` Alias to yarn serve:dev
@@ -241,26 +274,6 @@ This section contains available commands and their usage for each packages.
 - `CTRL+L` Query and Preview Logs in a Git Repository
 - `CTRL+H` Query List of Previously Run Commands(History)
 - `CTRL+V` Query List of Environment Variables in Current Scope
-
-## Starship
-
-### Installation
-
-- [starship](https://starship.rs/guide/#🚀-installation) - Shell Prompt
-
-### Configuration
-
-Symlink .starship.toml to your `.config` directory
-
-```
-$ cd dotfiles
-$ ln -s .config/.starship.toml $HOME/.config/starship.toml
-```
-
-### Configuration
-
-You can check the official [guide](https://starship.rs/config/#prompt) to
-configure starship if you don't want to use our default configuration :)
 
 # Acknowledgements
 
