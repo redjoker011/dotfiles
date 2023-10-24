@@ -2,10 +2,10 @@ Collection of helpful tool configurations that I used on my day by day coding âŒ
 
 ![](./assets/ui.png)
 
-* [Tmux](#tmux)
-* [Git Commit Message Template](#git-commit-template)
-* [Fish(Shell)](#fish)
-* [Starship(Shell Prompt)](#starship)
+- [Tmux](#tmux)
+- [Git Commit Message Template](#git-commit-template)
+- [Fish(Shell)](#fish)
+- [Starship(Shell Prompt)](#starship)
 
 # Installation
 
@@ -26,6 +26,7 @@ $ brew cask install font-haskplex
 # Install Haskplex Nerd font
 $ brew cask install font-haskplex-nerd
 ```
+
 source: https://github.com/huytd/haskplex-font
 
 ### Fish
@@ -76,7 +77,6 @@ Note: Brew installs fish on `/opt/homebrew/bin/fish` so you might need to
 symlink it on `/usr/local/bin` for it to work. e.g `sudo ln -s
 /opt/homebrew/bin/fish /usr/local/bin`
 
-
 ## Terminal Based Config
 
 ### [Iterm2](https://iterm2.com/) + [Tmux](https://github.com/tmux/tmux/wiki)
@@ -91,6 +91,7 @@ brew install tmux
 # Ubuntu
 apt install tmux
 ```
+
 https://github.com/tmux/tmux/wiki/Installing
 
 Copy `.tmux.conf` and `.tmux.conf.local` in your local directory
@@ -150,16 +151,12 @@ $ ln -s .config/.starship.toml $HOME/.config/starship.toml
 You can check the official [guide](https://starship.rs/config/#prompt) to
 configure starship if you don't want to use our default configuration :)
 
-
-
-
 ## Commands and Bindings
 
 For Tmux commands you can check the official (guide)(https://github.com/gpakosz/.tmux#bindings) on which we fork our
 `.tmux.conf` config
 
 TLDR; I prefer use CTRL+A as tmux prefix :)
-
 
 ### Commands
 
@@ -173,7 +170,7 @@ This section contains available commands and their usage for each packages.
 - `s` Alias to ssh
 - `cx` Alias to chmod +x
 - `more` Alias to less
-- `cleanup` Remove *.tmp, *.aux and *.log files on current directory
+- `cleanup` Remove _.tmp, _.aux and \*.log files on current directory
 - `cdl` Navigate to directory and list files e.g `cdl dotfiles`
 - `backup` Create a backup for a file e.g `backup README.md -> README.md.bak`
 - `gfind` Globally search for a file e.g `gfind README.md`
@@ -198,6 +195,7 @@ This section contains available commands and their usage for each packages.
 ##### Git
 
 - Git Flow
+
   - `gflfs` Alias for git flow feature start
   - `gflff` Alias for git flow feature finish
   - `gflhs` Alias for git flow hotfix start
@@ -206,17 +204,20 @@ This section contains available commands and their usage for each packages.
   - `gflrf` Alias for git flow release finish
 
 - Stash
+
   - `gstdu` Stash All unstaged changes
   - `gsta` Stash unstaged changes
   - `gstaa` Apply latest Stashed Changes
 
 - Branch
+
   - `gb` Display existing branches
   - `gba` Display all branches
   - `gbD` Delete branch
   - `gbx` Delete all local git branches aside from main|master|development
 
 - Commit
+
   - `ga` Alias for git add
   - `gaa` Alias for git add --al
   - `gst` Alias for git status
@@ -225,17 +226,20 @@ This section contains available commands and their usage for each packages.
   - `gcf` Alias for git commit disabling Overcommit(Ruby) and Husky(Node)
 
 - Checkout
+
   - `gcm` Checkout to main branch
   - `gcd` Checkout to development branch
   - `gcb` Checkout to new branch e.g gcb feature/test1
   - `gco` Alias to git checkout
 
 - Pull
+
   - `ggpur` Pull and Rebase
   - `ggpull` Pull Remote Changes
   - `ggpush` Push Local Changes to Remote
 
 - History
+
   - `gbl` Alias to git blame -b -w
   - `grb` Alias to git rebase
   - `grba` Alias to git rebase --abort
@@ -248,7 +252,6 @@ This section contains available commands and their usage for each packages.
   - `glgp` Alias to git log --stat -p
   - `glgp` Alias to git log --graph with styles
 
-
 ##### Yarn
 
 - `ys` Alias to yarn serve
@@ -256,6 +259,11 @@ This section contains available commands and their usage for each packages.
 - `ystd` Alias to yarn start:dev
 - `ytu` Alias to yarn test:unit
 - `yte` Alias to yarn test:e2e
+
+##### Docker
+
+- `docker_exec` function to access docker container using container name from docker ps
+- `docker_exec_container` function to access docker container using container name as string. Use docker_exec_container -h to learn more
 
 ### Bindings
 
