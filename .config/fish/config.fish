@@ -71,6 +71,8 @@ function _git_current_branch
   echo $ref
 end
 
+# -------------------------- Aliases -------------------------- #
+
 alias gcd='git checkout development'
 alias gcds='git checkout dev'
 alias gcb='git checkout -b'
@@ -95,7 +97,7 @@ alias glg='git log --stat'
 alias glgp='git log --stat -p'
 alias glods="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short"
 
-# Git Flow Aliases
+# Git Flow
 # Ref: https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git-flow/git-flow.plugin.zsh
 alias gflfs='git flow feature start'
 alias gflff='git flow feature finish'
@@ -126,8 +128,7 @@ alias gbx='git branch | grep -v "master\|main\|development" | xargs git branch -
 # !!!Force Commit Ignoring Linters
 alias gcf='OVERCOMMIT_DISABLE=1 git commit --no-verify'
 
-#============= Command Aliases =====================
-alias c='clear'
+# Rails
 alias ber='bundle exec rake'
 alias rdm='bin/rails db:migrate && bin/rails db:migrate RAILS_ENV=test'
 alias rdr='bin/rails db:rollback && bin/rails db:rollback RAILS_ENV=test'
@@ -139,14 +140,15 @@ alias bs='bundle exec sidekiq'
 alias brt='bundle exec rake test'
 alias br='bundle exec rake'
 alias rt='ruby -Itest'
-# Yarn Aliases
+
+# Yarn
 alias ys='yarn serve'
 alias ysrd='yarn serve:dev'
 alias ystd='yarn start:dev'
 alias ytu='yarn test:unit'
 alias yte='yarn test:e2e'
 
-# Vim aliases
+# Vim
 # https://www.reddit.com/r/vim/comments/42fwjx/when_vim_leaves_a_trail/cza0azv
 alias :wq="echo \"This isn't nvim!\""
 alias :wq!=:wq
@@ -158,11 +160,22 @@ alias vi='vim'
 alias v='vim'
 alias oldvim='\vim'
 
-# Useful aliases
+# Docker
+alias dsprune='docker system prune -a --volumes'
+
+# Docker compose
+alias dcb='docker compose build $argv'
+alias dcb='docker compose build $argv'
+alias dcup='docker compose up $argv'
+alias dcstop='docker compose stop $argv'
+
+# Others
+alias c='clear'
 alias s=ssh
 alias cx='chmod +x'
 alias more=less
 alias cleanup='rm -f *.tmp *.aux *.log'
+
 
 set PYENV_ROOT "/opt/homebrew/bin/pyenv"
 
