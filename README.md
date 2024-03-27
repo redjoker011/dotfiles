@@ -15,17 +15,7 @@ Clone repository `git clone git@github.com:redjoker011/dotfiles.git`
 
 ### Nerd Font
 
-Install Haskplex Nerd Font
-
-```
-$ brew tap huytd/cask-fonts
-
-# Install Haskplex font
-$ brew cask install font-haskplex
-
-# Install Haskplex Nerd font
-$ brew cask install font-haskplex-nerd
-```
+Install FiraCode Nerd Font from [here](https://www.nerdfonts.com/font-downloads)
 
 source: https://github.com/huytd/haskplex-font
 
@@ -105,11 +95,11 @@ Then proceed to customize your ~/.tmux.conf.local copy.
 
 Note: You also need to install [nerd-font](https://github.com/ryanoasis/nerd-fonts) in order for icons to work
 
-**Set Haskplex Nerd as Iterm Font**
+**Set FiraCode Nerd as Iterm Font**
 
 `Iterm -> User Preferences -> Profiles`
 
-select `Text` menu and select `Haskplex Nerd` font as preferred font
+select `Text` menu and select `FiraCode Nerd` font as preferred font
 
 ### Reattach to namespace
 
