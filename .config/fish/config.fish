@@ -199,6 +199,6 @@ end
 # @see issue: https://github.com/OmniSharp/omnisharp-vim/issues/798
 export DOTNET_ROOT=/usr/local/share/dotnet
 
+# Configure Go env variables
 export GOPATH=/Volumes/Development/projects/go
-export GOBIN=/Volumes/Development/projects/go/bin
-export GOROOT=/usr/local/go
+set -e GOROOT
