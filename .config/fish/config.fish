@@ -202,3 +202,8 @@ export DOTNET_ROOT=/usr/local/share/dotnet
 # Configure Go env variables
 export GOPATH=/Volumes/Development/projects/go
 set -e GOROOT
+
+# Activate mise when installed
+if type -q mise
+  mise activate fish | source
+end
