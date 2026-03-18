@@ -185,10 +185,10 @@ bind \cx _fzf_search_git_status_with_preview
 
 export PATH="$PATH:$HOME/Library/PackageManager/bin"
 
-set -Ux fish_user_paths $HOME/.rbenv/bin $fish_user_paths
-
-# Initialize Ruby Manager rbenv
-status --is-interactive; and rbenv init - fish | source
+# set -Ux fish_user_paths $HOME/.rbenv/bin $fish_user_paths
+#
+# # Initialize Ruby Manager rbenv
+# status --is-interactive; and rbenv init - fish | source
 
 # Initialize nvm
 function nvm
