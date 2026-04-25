@@ -1,0 +1,11 @@
+new_tab nvim_lua
+enabled_layouts splits, stack
+layout splits
+cd /Volumes/Development/nvim_lua
+launch nvim
+
+new_tab golang
+enabled_layouts splits, stack
+layout splits
+cd /Volumes/Development/projects/go
+launch nvim
