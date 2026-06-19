@@ -36,13 +36,6 @@ if type -q mise
     mise activate fish | source
 end
 
-# Node Version Manager Note:
-# 'bass' with standard nvm can slow down shell startup significantly.
-# Consider using the native fish plugin 'jorgebucaran/nvm.fish' instead!
-function nvm
-    bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
-end
-
 # =============================================================================
 # 3. Custom Functions
 # =============================================================================
