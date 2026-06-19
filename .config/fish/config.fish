@@ -25,9 +25,6 @@ starship init fish | source
 # Theme Configuration
 set -g theme_nerd_fonts yes
 
-# FZF Bindings (Customizing default fzf plugin bindings)
-fzf_configure_bindings --git_status=\cs --history=\ch --variables=\cv --directory=\cf --git_log=\cl
-
 # Experimental Git Status Preview
 bind \cx _fzf_search_git_status_with_preview
 
