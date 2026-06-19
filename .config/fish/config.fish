@@ -1,209 +1,150 @@
+# =============================================================================
+# 1. System Paths & Environments
+# =============================================================================
+# Homebrew path (Safely prepends without duplicates)
 fish_add_path /opt/homebrew/bin
+fish_add_path $HOME/Library/PackageManager/bin
 
+# Environment Variables (Native Fish syntax)
+set -gx LC_ALL en_US.UTF-8
+set -gx TERM xterm-256color
+set -gx EDITOR nvim
+set -gx DOTNET_ROOT /usr/local/share/dotnet
+set -gx GOPATH /Volumes/Development/projects/go
+set -e GOROOT
+
+# Use Vim as manpager
+set -gx MANPAGER "/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nomod nolist noma' -\""
+
+# =============================================================================
+# 2. Prompts, Tools & Plugin Initializations
+# =============================================================================
+# Starship Prompt
 starship init fish | source
 
-# set -g theme_powerline_fonts yes
+# Theme Configuration
 set -g theme_nerd_fonts yes
 
-set -x LC_ALL en_US.UTF-8
-
-export TERM=xterm-256color
-# export TERMINAL="kitty"
-export EDITOR="nvim"
-# export DOTBARE_DIR="$HOME/dotfiles"
-
-# sets vim as manpager
-export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nomod nolist noma' -\""
-
-# Override Default fzf bindings
-# Change bindings based on your preference
+# FZF Bindings (Customizing default fzf plugin bindings)
 fzf_configure_bindings --git_status=\cs --history=\ch --variables=\cv --directory=\cf --git_log=\cl
 
-# =============== General Aliases =====================
-alias reload "source ~/.config/fish/config.fish | echo "Reloaded!" "
+# Experimental Git Status Preview
+bind \cx _fzf_search_git_status_with_preview
 
-if type -q exa
-  alias ll "exa -l -g --icons"
+# Activate mise (version manager) if present
+if type -q mise
+    mise activate fish | source
 end
 
-alias mux='pgrep -vx tmux > /dev/null && \
-		tmux new -d -s delete-me && \
-		tmux run-shell ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh && \
-		tmux kill-session -t delete-me && \
-		tmux attach || tmux attach'
+# Node Version Manager Note:
+# 'bass' with standard nvm can slow down shell startup significantly.
+# Consider using the native fish plugin 'jorgebucaran/nvm.fish' instead!
+function nvm
+    bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
+end
 
-#============= Git Aliases =====================
-# Refs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
+# =============================================================================
+# 3. Custom Functions
+# =============================================================================
+# Fixed config reload function
+function reload --description "Reload fish configuration"
+    source ~/.config/fish/config.fish
+    echo "Config reloaded!"
+end
 
-# Check if main exists and use instead of master
-# https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh#L33
+# Smart Tmux Session Restorer
+function mux --description "Attach or restore tmux session"
+    pgrep -vx tmux > /dev/null
+    and tmux new -d -s delete-me
+    and tmux run-shell ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh
+    and tmux kill-session -t delete-me
+    and tmux attach
+    or tmux attach
+end
+
+# Get the modern primary Git branch (main/trunk/master)
 function git_main_branch
-  command git rev-parse --git-dir &>/dev/null || return $ref
-  for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk}
-    if command git show-ref -q --verify $ref
-      set branch (string split -r -m1 / $ref)
-			echo $branch[2]
-      return
+    command git rev-parse --git-dir &>/dev/null; or return
+    for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk}
+        if command git show-ref -q --verify $ref
+            set -l branch (string split -r -m1 / $ref)
+            echo $branch[2]
+            return
+        end
     end
-  end
-  echo master
+    echo master
 end
 
-alias gcm='git checkout '(git_main_branch)''
+# =============================================================================
+# 4. Abbreviations & Aliases (Use 'abbr' for self-expanding terminal shortcuts)
+# =============================================================================
+# General
+abbr -a c clear
+abbr -a s ssh
+abbr -a cx 'chmod +x'
+abbr -a more less
+abbr -a cleanup 'rm -f *.tmp *.aux *.log'
 
-function __git_prompt_git
-  echo (GIT_OPTIONAL_LOCKS=0 command git $argv)
+# Modern 'ls' (Upgraded from exa to eza)
+if type -q eza
+    abbr -a ll "eza -l -g --icons"
+else if type -q exa
+    abbr -a ll "exa -l -g --icons"
 end
 
-function git_current_branch
-  command git symbolic-ref --short HEAD 2>/dev/null
-end
+# Git Core Shortcuts
+abbr -a gco git checkout
+abbr -a gcd 'git checkout development'
+abbr -a gcds 'git checkout dev'
+abbr -a gcb 'git checkout -b'
+abbr -a gcm 'git checkout (git_main_branch)'
+abbr -a ga 'git add'
+abbr -a gaa 'git add --all'
+abbr -a gst 'git status'
+abbr -a gbl 'git blame -b -w'
+abbr -a gcp 'git cherry-pick'
+abbr -a gc 'git commit -v'
+abbr -a gb 'git branch'
+abbr -a gba 'git branch -a'
+abbr -a gbD 'git branch -D'
+abbr -a glg 'git log --stat'
+abbr -a glgp 'git log --stat -p'
+abbr -a glods "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short"
+abbr -a gm 'git merge'
+abbr -a grb 'git rebase'
+abbr -a grba 'git rebase --abort'
+abbr -a grbc 'git rebase --continue'
+abbr -a grbi 'git rebase -i'
 
-function _git_current_branch
-  set -l ref (__git_prompt_git symbolic-ref --short HEAD 2> /dev/null)
-  set -l ret $status
+# Git Push/Pull (Origin)
+abbr -a ggpur  'git pull --rebase origin (git branch --show-current)'
+abbr -a ggpull 'git pull origin (git branch --show-current)'
+abbr -a ggpush 'git push origin (git branch --show-current)'
 
-  if test ! $ret = 0
-    test $ret -eq 128 && return  # no git repo.
-    set ref (__git_prompt_git rev-parse --short HEAD 2> /dev/null) || return
-  end
-  # echo {$ref#refs/heads/}
-  echo $ref
-end
+# Git Push/Pull (Upstream)
+abbr -a ggpuru 'git pull --rebase upstream (git branch --show-current)'
+abbr -a ggpullu 'git pull upstream (git branch --show-current)'
+abbr -a ggpushu 'git push upstream (git branch --show-current)'
 
-# -------------------------- Aliases -------------------------- #
+# Nuke all local branches except protected ones
+abbr -a gbx 'git branch | grep -v "master\|main\|development" | xargs git branch -D'
 
-alias gcd='git checkout development'
-alias gcds='git checkout dev'
-alias gcb='git checkout -b'
-alias gco='git checkout'
+# Rails & Ruby
+abbr -a ber 'bundle exec rake'
+abbr -a bs 'bundle exec sidekiq'
 
-alias ga='git add'
-alias gaa='git add --all'
+# Docker & Docker Compose
+abbr -a dsprune 'docker system prune -a --volumes'
+abbr -a dcb 'docker compose build'
+abbr -a dcup 'docker compose up'
+abbr -a dcstop 'docker compose stop'
 
-alias gst='git status'
-
-alias gbl='git blame -b -w'
-
-alias gcp='git cherry-pick'
-
-alias gc='git commit -v'
-
-alias gb='git branch'
-alias gba='git branch -a'
-alias gbD='git branch -D'
-
-alias glg='git log --stat'
-alias glgp='git log --stat -p'
-alias glods="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short"
-
-# Git Flow
-# Ref: https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git-flow/git-flow.plugin.zsh
-alias gflfs='git flow feature start'
-alias gflff='git flow feature finish'
-alias gflhs='git flow hotfix start'
-alias gflhf='git flow hotfix finish'
-alias gflrs='git flow release start'
-alias gflrf='git flow release finish'
-
-alias grb='git rebase'
-alias grba='git rebase --abort'
-alias grbc='git rebase --continue'
-alias grbi='git rebase -i'
-
-alias ggpur='git pull --rebase origin '(git_current_branch)''
-alias ggpull='git pull origin '(git_current_branch)''
-alias ggpush='git push origin '(git_current_branch)''
-
-alias gm='git merge'
-
-# Stash Unstaged Commits
-alias gstdu='git stash -k'
-alias gsta='git stash push'
-alias gstaa='git stash apply'
-
-# Remove All local branches except master, development and current branch
-alias gbx='git branch | grep -v "master\|main\|development" | xargs git branch -D'
-
-# !!!Force Commit Ignoring Linters
-alias gcf='OVERCOMMIT_DISABLE=1 git commit --no-verify'
-
-# Rails
-alias ber='bundle exec rake'
-alias rdm='bin/rails db:migrate && bin/rails db:migrate RAILS_ENV=test'
-alias rdr='bin/rails db:rollback && bin/rails db:rollback RAILS_ENV=test'
-alias rdcr='DISABLE_DATABASE_ENVIRONMENT_CHECK 1 && bin/rails db:drop && bin/rails db:create RAILS_ENV=development'
-alias rds='bin/rails db:drop && bin/rails db:create && bin/setup'
-alias rs='bin/spring stop && rails s'
-alias rc='bin/spring stop && rails c'
-alias bs='bundle exec sidekiq'
-alias brt='bundle exec rake test'
-alias br='bundle exec rake'
-alias rt='ruby -Itest'
-
-# Yarn
-alias ys='yarn serve'
-alias ysrd='yarn serve:dev'
-alias ystd='yarn start:dev'
-alias ytu='yarn test:unit'
-alias yte='yarn test:e2e'
-
-# Vim
-# https://www.reddit.com/r/vim/comments/42fwjx/when_vim_leaves_a_trail/cza0azv
+# Vim Muscle Memory Safeties (Kept as traditional aliases)
 alias :wq="echo \"This isn't nvim!\""
 alias :wq!=:wq
 alias :q=:wq
 alias :qa=:wq
 alias :q!=:wq
-
 alias vi='vim'
 alias v='vim'
 alias oldvim='\vim'
-
-# Docker
-alias dsprune='docker system prune -a --volumes'
-
-# Docker compose
-alias dcb='docker compose build $argv'
-alias dcb='docker compose build $argv'
-alias dcup='docker compose up $argv'
-alias dcstop='docker compose stop $argv'
-
-# Others
-alias c='clear'
-alias s=ssh
-alias cx='chmod +x'
-alias more=less
-alias cleanup='rm -f *.tmp *.aux *.log'
-
-
-set PYENV_ROOT "/opt/homebrew/bin/pyenv"
-
-# Temporarily bind CTRL+X to _fzf_search_git_status_with_preview
-# !Experimental
-bind \cx _fzf_search_git_status_with_preview
-
-export PATH="$PATH:$HOME/Library/PackageManager/bin"
-
-# set -Ux fish_user_paths $HOME/.rbenv/bin $fish_user_paths
-#
-# # Initialize Ruby Manager rbenv
-# status --is-interactive; and rbenv init - fish | source
-
-# Initialize nvm
-function nvm
-    bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
-end
-
-# This is pre-requisite for Omnisharp-vim to work
-# @see issue: https://github.com/OmniSharp/omnisharp-vim/issues/798
-export DOTNET_ROOT=/usr/local/share/dotnet
-
-# Configure Go env variables
-export GOPATH=/Volumes/Development/projects/go
-set -e GOROOT
-
-# Activate mise when installed
-if type -q mise
-  mise activate fish | source
-end
