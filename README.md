@@ -2,9 +2,12 @@ Collection of helpful tool configurations that I used on my day by day coding ‚å
 
 ![](./assets/ui.png)
 
-- [Git Commit Message Template](#git-commit-template)
-- [Fish(Shell)](#fish)
-- [Shell Commands & Shortcuts Reference (External Link)](#commands-and-bindings)
+# Supported Versions
+
+This configuration suite is validated and maintained for the following software baselines:
+
+* **Fish Shell:** `v4.7.1` or higher
+* **Kitty Terminal:** `v0.46.2` or higher
 
 # Installation
 
