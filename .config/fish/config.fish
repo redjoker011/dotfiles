@@ -62,6 +62,7 @@ function git_main_branch
     echo master
 end
 
+
 # =============================================================================
 # 4. Abbreviations & Aliases (Use 'abbr' for self-expanding terminal shortcuts)
 # =============================================================================
@@ -138,3 +139,8 @@ alias :q!=:wq
 alias vi='vim'
 alias v='vim'
 alias oldvim='\vim'
+
+# =============================================================================
+# 5. Key Bindings
+# =============================================================================
+bind \cg _fzf_search_history # Bind to CTRL+g
