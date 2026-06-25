@@ -25,9 +25,6 @@ starship init fish | source
 # Theme Configuration
 set -g theme_nerd_fonts yes
 
-# Experimental Git Status Preview
-bind \cx _fzf_search_git_status_with_preview
-
 # Activate mise (version manager) if present
 if type -q mise
     mise activate fish | source
@@ -64,6 +61,7 @@ function git_main_branch
     end
     echo master
 end
+
 
 # =============================================================================
 # 4. Abbreviations & Aliases (Use 'abbr' for self-expanding terminal shortcuts)
@@ -105,6 +103,9 @@ abbr -a grb 'git rebase'
 abbr -a grba 'git rebase --abort'
 abbr -a grbc 'git rebase --continue'
 abbr -a grbi 'git rebase -i'
+abbr -a gstdu 'git stash -k'
+abbr -a gsta 'git stash push'
+abbr -a gstaa 'git stash apply'
 
 # Git Push/Pull (Origin)
 abbr -a ggpur  'git pull --rebase origin (git branch --show-current)'
@@ -138,3 +139,8 @@ alias :q!=:wq
 alias vi='vim'
 alias v='vim'
 alias oldvim='\vim'
+
+# =============================================================================
+# 5. Key Bindings
+# =============================================================================
+bind \cg _fzf_search_history # Bind to CTRL+g
