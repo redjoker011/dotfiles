@@ -82,5 +82,5 @@ Modern configurations leverage the non-conflicting ergonomic `Ctrl+Alt` combinat
 * `Ctrl+Alt+S` : Explore altered file targets using an interactive `delta` diff layout frame
 * `Ctrl+Alt+L` : Explore, parse, and skim over sequential commit timeline files
 * `Ctrl+Alt+P` : Interactively locate active system ports and kill structural process IDs
-* `Ctrl+R` : Fuzzy find historical terminal runtime history logs
+* `Ctrl+G` : Fuzzy find historical terminal runtime history logs
 * `Ctrl+V` : Query and inspect internal active shell runtime variable states
