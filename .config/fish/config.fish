@@ -144,3 +144,4 @@ alias oldvim='\vim'
 # 5. Key Bindings
 # =============================================================================
 bind \cg _fzf_search_history # Bind to CTRL+g
+bind \cx _fzf_git_diff # Bind to CTRL+x

@@ -84,3 +84,4 @@ Modern configurations leverage the non-conflicting ergonomic `Ctrl+Alt` combinat
 * `Ctrl+Alt+P` : Interactively locate active system ports and kill structural process IDs
 * `Ctrl+G` : Fuzzy find historical terminal runtime history logs
 * `Ctrl+V` : Query and inspect internal active shell runtime variable states
+* `Ctrl+X` : Interactive Git Diff
