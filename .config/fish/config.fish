@@ -123,6 +123,23 @@ abbr -a gbx 'git branch | grep -v "master\|main\|development" | xargs git branch
 # Rails & Ruby
 abbr -a ber 'bundle exec rake'
 abbr -a bs 'bundle exec sidekiq'
+abbr -a be 'bundle exec'
+abbr -a rc 'bin/rails c'
+abbr -a rs 'bin/rails s'
+abbr -a rd 'bin/dev'
+abbr -a rsb "bin/rails server -p 3000 -b '0.0.0.0'"
+
+# Routes
+abbr -a rrr 'bin/rails routes'
+
+# Database
+abbr -a rdm 'bin/rails db:migrate'
+
+# If using RSpec (most common)
+abbr -a bex 'bundle exec rspec'
+
+# If using default Rails Minitest
+abbr -a rt 'bin/rails test'
 
 # Docker & Docker Compose
 abbr -a dsprune 'docker system prune -a --volumes'
