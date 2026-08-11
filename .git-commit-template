@@ -1,45 +1,40 @@
-#https://www.conventionalcommits.org/en/v1.0.0/#summary
-#
-# Format
-# <type>[optional scope]: <description>
-#
-# Example:
-# feat: Implement automated commit messages
-# refactor!: drop support for Node 56 -> Add exclamation mark `!` to emphasize attention
-# feat(lang): add polish language -> Commit message with scope
-# |<----   Try To Limit Description to a Maximum Of 50 Characters   ---->|
+# <type>[optional scope][!]: <description>
+# |<----  Try to limit summary line to a maximum of 50 characters  ---->|
 
-# (Optional) Explain why this change is being made
-# |<----   Try To Limit Each Line to a Maximum Of 72 Characters   ---->|
+# [Optional body: Explain WHAT and WHY this change is being made]
+# |<----   Try to limit each line to a maximum of 72 characters   ---->|
 
-# (Optional) Provide links or keys to any relevant tickets, articles or other resources
-# Example: Github issue #23
+# [Optional footer(s): Breaking changes, issue references, metadata]
+# BREAKING CHANGE: <description of breaking change>
+# Fixes #123, Closes #456
 
-# --- COMMIT END ---
-# Tag can be
-#    chore:   (Changes to the build process (grunt) or auxiliary tools and libraries such as documentation generation and linters (jshint, etc.))
-#    feat     (new feature)
-#    fix      (bug fix)
-#    refactor (refactoring code)
-#    style    (formatting, missing semi colons, etc; no code change)
-#    doc      (changes to documentation)
-#    perf:    (A code change that improves performance)
-#    test     (adding or refactoring tests; no production code change)
-#    version  (version bump/new release; no production code change)
-#    jsrXXX   (Patches related to the implementation of jsrXXX, where XXX the JSR number)
-#    jdkX     (Patches related to supporting jdkX as the host VM, where X the JDK version)
-#    dbg      (Changes in debugging code/frameworks; no production code change)
-#    license  (Edits regarding licensing; no production code change)
-#    hack     (Temporary fix to make things move forward; please avoid it)
-#    WIP      (Work In Progress; for intermediate commits to keep patches reasonably sized)
-#    defaults (changes default options)
+# Examples:
+# feat(auth): add OAuth2 provider support
+# fix(api): resolve memory leak on websocket reconnect
+# docs(changelog): update release notes for v1.2.0
+# chore(release): bump version to v1.2.0
+
+# --- COMMIT HELP ---
+# Types:
+#   feat            (A new feature for the user)
+#   fix             (A bug fix)
+#   docs            (Documentation only changes, e.g., docs(changelog))
+#   style           (Formatting, missing semi-colons, no code change)
+#   refactor        (Refactoring code without changing behavior or fixing bugs)
+#   perf            (A code change that improves performance)
+#   test            (Adding or correcting existing tests)
+#   build           (Changes that affect the build system or external dependencies)
+#   ci              (Changes to CI configuration files and scripts)
+#   chore           (Maintenance, release bumps, tooling, e.g., chore(release))
+#   revert          (Reverts a previous commit)
 #
-# --------------------
-# Remember to:
-#   * Capitalize the subject line
-#   * Use the imperative mood in the subject line
-#   * Do not end the subject line with a period
-#   * Separate subject from body with a blank line
-#   * Use the body to explain what and why vs. how
-#   * Can use multiple lines with "-" or "*" for bullet points in body
+# Common Release Scopes:
+#   chore(release)   Use when bumping package version & changelog for a new release
+#   docs(changelog)  Use when making standalone updates to CHANGELOG.md/release notes
+#
+# Formatting Rules:
+#   * Append `!` after type/scope for breaking changes (e.g., `feat(api)!: drop v1 endpoints`)
+#   * Use imperative mood in the description ("add" not "added", "change" not "changes")
+#   * Keep description lowercase and do NOT end with a period
+#   * Separate summary, body, and footer with blank lines
 # --------------------
