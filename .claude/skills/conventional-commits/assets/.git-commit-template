@@ -1,0 +1,40 @@
+# <type>[optional scope][!]: <description>
+# |<----  Try to limit summary line to a maximum of 50 characters  ---->|
+
+# [Optional body: Explain WHAT and WHY this change is being made]
+# |<----   Try to limit each line to a maximum of 72 characters   ---->|
+
+# [Optional footer(s): Breaking changes, issue references, metadata]
+# BREAKING CHANGE: <description of breaking change>
+# Fixes #123, Closes #456
+
+# Examples:
+# feat(auth): add OAuth2 provider support
+# fix(api): resolve memory leak on websocket reconnect
+# docs(changelog): update release notes for v1.2.0
+# chore(release): bump version to v1.2.0
+
+# --- COMMIT HELP ---
+# Types:
+#   feat            (A new feature for the user)
+#   fix             (A bug fix)
+#   docs            (Documentation only changes, e.g., docs(changelog))
+#   style           (Formatting, missing semi-colons, no code change)
+#   refactor        (Refactoring code without changing behavior or fixing bugs)
+#   perf            (A code change that improves performance)
+#   test            (Adding or correcting existing tests)
+#   build           (Changes that affect the build system or external dependencies)
+#   ci              (Changes to CI configuration files and scripts)
+#   chore           (Maintenance, release bumps, tooling, e.g., chore(release))
+#   revert          (Reverts a previous commit)
+#
+# Common Release Scopes:
+#   chore(release)   Use when bumping package version & changelog for a new release
+#   docs(changelog)  Use when making standalone updates to CHANGELOG.md/release notes
+#
+# Formatting Rules:
+#   * Append `!` after type/scope for breaking changes (e.g., `feat(api)!: drop v1 endpoints`)
+#   * Use imperative mood in the description ("add" not "added", "change" not "changes")
+#   * Keep description lowercase and do NOT end with a period
+#   * Separate summary, body, and footer with blank lines
+# --------------------

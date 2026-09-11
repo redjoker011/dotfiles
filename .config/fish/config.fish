@@ -162,3 +162,4 @@ alias oldvim='\vim'
 # =============================================================================
 bind \cg _fzf_search_history # Bind to CTRL+g
 bind \cx _fzf_git_diff_with_preview # Bind to CTRL+x
+export PATH="$HOME/.local/bin:$PATH"
