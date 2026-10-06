@@ -117,6 +117,20 @@ abbr -a ggpuru 'git pull --rebase upstream (git branch --show-current)'
 abbr -a ggpullu 'git pull upstream (git branch --show-current)'
 abbr -a ggpushu 'git push upstream (git branch --show-current)'
 
+# git worktree abbreviations
+abbr -a gwt   'git worktree'
+abbr -a gwtl  'git worktree list'
+abbr -a gwta  'git worktree add'
+abbr -a gwtab 'git worktree add -b'
+abbr -a gwtr  'git worktree remove'
+abbr -a gwtrf 'git worktree remove --force'
+abbr -a gwtm  'git worktree move'
+abbr -a gwtp  'git worktree prune'
+abbr -a gwtpn 'git worktree prune --dry-run --verbose'
+abbr -a gwtlk 'git worktree lock'
+abbr -a gwtul 'git worktree unlock'
+abbr -a gwtrp 'git worktree repair'
+
 # Nuke all local branches except protected ones
 abbr -a gbx 'git branch | grep -v "master\|main\|development" | xargs git branch -D'
 
