@@ -28,5 +28,5 @@ function wt --description 'Open or create a git worktree in a new kitty tab'
     end
 
     set -l repo (basename (dirname (realpath (git rev-parse --git-common-dir))))
-    kitten @ launch --type=tab --cwd=$dir --tab-title="$repo:$branch"
+    kitten @ launch --type=tab --location=after --cwd=$dir --tab-title="$repo:$branch"
 end
