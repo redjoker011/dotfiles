@@ -63,12 +63,12 @@ For an effort too big or unclear for one shaping session: you can't yet name the
 
 Don't run the whole chain in one session. The session that wrote a design or the code is the worst reviewer of it, long sessions get compacted until early decisions survive only as summaries, and a decision that lives only in chat is silently lost at the next stage. The spec, plan, and ledger on disk are the handoffs.
 
-| Session | Starts with | Why separate |
-|---------|-------------|--------------|
-| 1 Shaping | the idea | Grilling needs the design conversation, so it stays here. The adversarial review gets fresh context as a subagent, no session switch needed. |
-| 2 Planning (new) | "Plan from `{design-root}specs/<file>`" | The plan is built from the spec alone. If the planner needs something "we discussed", the spec has a gap: fix the spec. |
-| 3 Implementation (new, in the worktree) | "Execute `{design-root}plans/<file>`" | A clean window for the longest run. Plan + ledger make it resumable after a crash or compaction. Native execution runs fine on a mid-tier model. |
-| 4 Final review (new, same worktree) | "`/full-review {base} high`" | The implementing session wants it to be done; a fresh one judges it cold. Small fixes happen here rather than in session 3. |
+| Session | Starts with | Model | Why separate |
+|---------|-------------|-------|--------------|
+| 1 Shaping | the idea | `opus` | Grilling needs the design conversation, so it stays here. The adversarial review gets fresh context as a subagent, no session switch needed. |
+| 2 Planning (new) | "Plan from `{design-root}specs/<file>`" | `opus` | The plan is built from the spec alone. If the planner needs something "we discussed", the spec has a gap: fix the spec. |
+| 3 Implementation (new, in the worktree) | "Execute `{design-root}plans/<file>`" | `sonnet` | A clean window for the longest run. Plan + ledger make it resumable after a crash or compaction. Native execution runs fine on a mid-tier model. |
+| 4 Final review (new, same worktree) | "`/full-review {base} high`" | `opus` | The implementing session wants it to be done; a fresh one judges it cold. Small fixes happen here rather than in session 3. |
 
 - Sessions 1 and 2 may merge when shaping was short and the context is still small. Never merge 3 and 4.
 - Bounded work: one session is fine; `/full-review` already reviews through fresh subagents. Open a new session for the review only if the fix turned into a long debugging hunt.
@@ -115,6 +115,7 @@ No spec file, no plan file.
 - **Adversarial review vs grilling:** adversarial review finds what is *wrong* (false claims about the code, unhandled failure paths); grilling finds what is *undecided*. Adversarial runs first so its `decide` findings seed grilling.
 - **Grilling:** runs on the written spec, and its answers must land back in the spec. Answers that stay in chat are lost.
 - **Subagent models:** no forced `CLAUDE_CODE_SUBAGENT_MODEL` override. Skills pick the model per role (final review on the most capable model).
+- **Session models:** set the main session's model with `/model <alias>` at the start of each session, per the Session splits table. Wayfinder sessions, PR reviews, and bounded-work root-causing use `opus`; a bounded fix can drop to `sonnet` once its design is agreed. Write aliases (`opus`, `sonnet`, `haiku`), never model IDs: aliases track the latest release. Pin an exact ID only to dodge a regression, with a dated note saying why.
 
 ## Frontmatter and distillation
 
