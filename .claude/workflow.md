@@ -187,6 +187,7 @@ Versions as installed on 2026-10-09 (`~/.claude/plugins/cache/`).
 | `superpowers` | `claude-plugins-official` marketplace | 6.4.1 | `brainstorming`, `writing-plans`, `using-git-worktrees`, `subagent-driven-development`, `executing-plans`, `test-driven-development`, `systematic-debugging`, `verification-before-completion`, `receiving-code-review`, `finishing-a-development-branch` |
 | `mattpocock-skills` | GitHub `mattpocock/skills` | 1.2.3 | `grill-with-docs` and `grill-me` (user-invoked; both call `grilling`, and `grill-with-docs` also calls `domain-modeling`), `domain-modeling`, `diagnosing-bugs`, `code-review` (inside `/full-review`) |
 | `ponytail` | GitHub `DietrichGebert/ponytail` | 4.10.0 | `ponytail-review` (spec pass and inside `/full-review`) |
+| `ruby-lsp` | `claude-plugins-official` marketplace | — | LSP for Ruby repos; no skills |
 
 ### Personal skills (`~/.claude/skills/`)
 
@@ -206,6 +207,7 @@ Versions as installed on 2026-10-09 (`~/.claude/plugins/cache/`).
 ### Hooks and settings (`~/.claude/settings.json`)
 
 - `PreToolUse` hook `~/.claude/hooks/yard-reminder.sh`: on Ruby edits in `app/` or `lib/`, reminds Claude to follow `adding-code-comments`. Inert in non-Ruby repos.
+- `Stop` hook `~/.claude/hooks/kitty-notify.sh`: kitty desktop notification when Claude finishes.
 - No `CLAUDE_CODE_SUBAGENT_MODEL` override, so skills choose subagent models themselves.
 
 ### Per-repo setup the skills expect
