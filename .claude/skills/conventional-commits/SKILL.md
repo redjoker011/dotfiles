@@ -10,7 +10,7 @@ Helps Claude do two related things well:
 1. **Install** the bundled `.git-commit-template` into a repo and wire it up via `git config commit.template`.
 2. **Write or fix commit messages** — from a staged diff, a description of a change, or an existing bad commit message — so they conform to Conventional Commits and match the style/format of this specific template.
 
-The canonical template is bundled at `assets/git-commit-template.txt`. It is a copy of https://github.com/redjoker011/dotfiles/blob/master/.git-commit-template. Always read it fresh from that path rather than relying on memory of its contents, in case it's been customized.
+The canonical template is bundled at `assets/.git-commit-template`. It is a copy of https://github.com/redjoker011/dotfiles/blob/master/.git-commit-template. Always read it fresh from that path rather than relying on memory of its contents, in case it's been customized.
 
 ## Format at a glance
 
@@ -36,7 +36,7 @@ Two release-flavored scope conventions used by this template:
 
 ## Workflow: setting up the template in a repo
 
-1. Copy `assets/git-commit-template.txt` into the target repo, conventionally as `.git-commit-template` at the repo root (or `.gitmessage` if the user prefers that name).
+1. Copy `assets/.git-commit-template` into the target repo, conventionally as `.git-commit-template` at the repo root (or `.gitmessage` if the user prefers that name).
 2. Point git at it:
    ```bash
    git config commit.template .git-commit-template
