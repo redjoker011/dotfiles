@@ -25,6 +25,21 @@ Each repo's `docs/agents/workflow.md` fills in this table (copy it from here whe
 | `{risky-areas}` | Areas that get an extra security pass |
 | Repo conventions | Repo docs that also define these rules, and where they differ |
 
+## Foggy work (pre-shaping)
+
+For an effort too big or unclear for one shaping session: you can't yet name the 2-3 approaches brainstorming would ask you to choose between. Wayfinder runs before Session 1 and settles the open decisions so brainstorming can write the spec. Most architectural work doesn't need it; bounded work never does.
+
+| Step | Session | Skill / command |
+|------|---------|-----------------|
+| Chart the map. Destination: "approved spec at `{design-root}specs/YYYY-MM-DD-<topic>-design.md`" | One session; resolves no tickets | `/mattpocock-skills:wayfinder <idea>` (user-invoked only) |
+| Resolve one ticket | One session per ticket (research tickets may run in parallel) | `/mattpocock-skills:wayfinder <map path>` |
+| Map clear: start Session 1 from the map's Decisions-so-far | Session 1 Shaping, unchanged | `superpowers:brainstorming` |
+
+- Keep the map to planning. Don't put execution into its Notes; planning and implementation stay in Sessions 2–4.
+- The map is tracker-local (see the repo's `docs/agents/issue-tracker.md`) and not durable. Every decision has to land in the spec, an ADR, or a learning before the map is closed. The spec can link the map as history, but `distilled-to:` never lists it.
+- Research tickets create throwaway `research/<name>` branches. Delete them once their findings are in the spec.
+- Shaping still runs adversarial review, grilling, and ponytail-review on the written spec. Grilling should be lighter, since most decisions are already made.
+
 ## Architectural work (new subsystems, interface changes)
 
 | #  | Session | Step | Skill / command | Commit |
@@ -185,7 +200,7 @@ Versions as installed on 2026-10-09 (`~/.claude/plugins/cache/`).
 | Plugin | Source | Version | Skills used here |
 |--------|--------|---------|------------------|
 | `superpowers` | `claude-plugins-official` marketplace | 6.4.1 | `brainstorming`, `writing-plans`, `using-git-worktrees`, `subagent-driven-development`, `executing-plans`, `test-driven-development`, `systematic-debugging`, `verification-before-completion`, `receiving-code-review`, `finishing-a-development-branch` |
-| `mattpocock-skills` | GitHub `mattpocock/skills` | 1.2.3 | `grill-with-docs` and `grill-me` (user-invoked; both call `grilling`, and `grill-with-docs` also calls `domain-modeling`), `domain-modeling`, `diagnosing-bugs`, `code-review` (inside `/full-review`) |
+| `mattpocock-skills` | GitHub `mattpocock/skills` | 1.2.3 | `grill-with-docs` and `grill-me` (user-invoked; both call `grilling`, and `grill-with-docs` also calls `domain-modeling`), `domain-modeling`, `diagnosing-bugs`, `code-review` (inside `/full-review`), `wayfinder` (user-invoked; foggy work only) |
 | `ponytail` | GitHub `DietrichGebert/ponytail` | 4.10.0 | `ponytail-review` (spec pass and inside `/full-review`) |
 | `ruby-lsp` | `claude-plugins-official` marketplace | — | LSP for Ruby repos; no skills |
 
