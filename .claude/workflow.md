@@ -52,12 +52,18 @@ For an effort too big or unclear for one shaping session: you can't yet name the
 | 6  | 1 Shaping | Approve the spec | — | Confirm, then commit |
 | 7  | 2 Planning | Write plan to `{design-root}plans/YYYY-MM-DD-<feature>.md` from the spec alone | `superpowers:writing-plans` (built-in self-review only) | Confirm, then commit |
 | 8  | 3 Implementation | Isolated branch/worktree | `superpowers:using-git-worktrees` (SDD runs it at setup) | — |
-| 9  | 3 Implementation | Implement task by task, test-first | `superpowers:subagent-driven-development` (per-task review) or `superpowers:executing-plans` (one final reviewer); `superpowers:test-driven-development` inside both | Task commits pre-authorized |
-| 10 | 3 Implementation | Prove it works | `superpowers:verification-before-completion`, `{lint}`, `{test}` | — |
-| 11 | 4 Final review | Final review | `/full-review {base} high`. After SDD, the per-task spec checks are done; focus on Over-engineering + Correctness | — |
+| 9  | 3 Implementation | Implement task by task, test-first | `superpowers:subagent-driven-development` (per-task review) or `superpowers:executing-plans` (one final reviewer); see Implementation notes for which, and how TDD applies in each | Task commits pre-authorized |
+| 10 | 3 Implementation | Prove it works; copy the run's rulings into the plan before the session ends (see Implementation notes) | `superpowers:verification-before-completion`, `{lint}`, `{test}` | — |
+| 11 | 4 Final review | Final review | `/full-review {base} high`. Both execution skills already ran a whole-branch review on the most capable model; this pass adds standards, over-engineering, and a cold-session correctness read. After SDD, the per-task spec checks are done too; focus on Over-engineering + Correctness, weighing the plan's `## Execution rulings` | — |
 | 12 | 4 Final review | Handle findings | `superpowers:receiving-code-review` | Confirm, then commit |
 | 13 | 4 Final review | Distillation gate (see Frontmatter and distillation): spec/plan → `status: shipped`, fill `distilled-to:`, write ADR/learning | `mattpocock-skills:domain-modeling` for ADRs | Confirm, then commit |
 | 14 | 4 Final review | Open PR, linking issues with `Closes #N` / `Refs #N` | `superpowers:finishing-a-development-branch`, then `{pr-create}` | — |
+
+### Implementation notes
+
+- **Choosing the executor.** SDD when the plan is long enough that later tasks would run on a compacted context, or when it touches `{risky-areas}` (per-task review gate). `executing-plans` when the plan is short and contains the complete code (transcription plus testing). Both share one ledger, so a plan can switch executors mid-run.
+- **TDD.** `executing-plans` loads `superpowers:test-driven-development` itself. SDD implementers don't load it; they follow TDD only when the task says so. So the plan's tasks must carry explicit RED→GREEN steps (`writing-plans` writes them; check for them at step 7).
+- **Rulings outlive the session.** Both skills delete their workspace, ledger included, when they finish, which leaves "Rulings I made" and "Deferred minors" only in Session 3's final message. Before Session 3 ends, copy both lists into the plan under `## Execution rulings`. Session 4 reads them there, and the plan update is committed with the status flip at step 13.
 
 ### Session splits
 
