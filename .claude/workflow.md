@@ -120,7 +120,7 @@ No spec file, no plan file.
 - **Reviews:** no `code-review` on specs or plans; it hunts correctness bugs in diffs. Specs get ponytail-review; plans get writing-plans' self-review.
 - **Adversarial review vs grilling:** adversarial review finds what is *wrong* (false claims about the code, unhandled failure paths); grilling finds what is *undecided*. Adversarial runs first so its `decide` findings seed grilling.
 - **Grilling:** runs on the written spec, and its answers must land back in the spec. Answers that stay in chat are lost.
-- **Subagent models:** no forced `CLAUDE_CODE_SUBAGENT_MODEL` override. Skills pick the model per role (final review on the most capable model).
+- **Subagent models:** no forced `CLAUDE_CODE_SUBAGENT_MODEL` override. Skills pick the model per role (final review on the most capable model). Exception: `/full-review` runs the Standards and Spec sub-agents of `mattpocock-skills:code-review` and the `ponytail:ponytail-review` pass on `sonnet`; the correctness pass and the verification of findings stay on the session's model.
 - **Session models:** set the main session's model with `/model <alias>` at the start of each session, per the Session splits table. Wayfinder sessions, PR reviews, and bounded-work root-causing use `opus`; a bounded fix can drop to `sonnet` once its design is agreed. Write aliases (`opus`, `sonnet`, `haiku`), never model IDs: aliases track the latest release. Pin an exact ID only to dodge a regression, with a dated note saying why.
 
 ## Frontmatter and distillation
