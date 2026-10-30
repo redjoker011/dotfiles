@@ -131,9 +131,6 @@ abbr -a gwtlk 'git worktree lock'
 abbr -a gwtul 'git worktree unlock'
 abbr -a gwtrp 'git worktree repair'
 
-# Nuke all local branches except protected ones
-abbr -a gbx 'git branch | grep -v "master\|main\|development" | xargs git branch -D'
-
 # Rails & Ruby
 abbr -a ber 'bundle exec rake'
 abbr -a bs 'bundle exec sidekiq'
