@@ -95,20 +95,33 @@ No spec file, no plan file.
 | 6 | If the fix surfaced a gotcha, write the learning in `{learnings-dir}` in the same PR | — |
 | 7 | Commit (confirm first), draft PR | `superpowers:finishing-a-development-branch`, then `{pr-create}` |
 
+## Rebasing onto {base}
+
+Global git config has `rerere.enabled` (replays conflict resolutions already made) and `rebase.updateRefs` (moves branches stacked on this one along with it).
+
+| # | Step | Skill / command |
+|---|------|-----------------|
+| 1 | Fetch, then rebase | `git rebase {base}` |
+| 2 | Resolve conflicts; where both sides changed the same rule, the spec's decision wins | `mattpocock-skills:resolving-merge-conflicts` |
+| 3 | Run the specs both sides touched, plus lint | `{test}`, `{lint}` |
+| 4 | Commit any fixes the rebase forced (confirm first) | — |
+| 5 | Force-push after confirming | `git push --force-with-lease` |
+| 6 | If steps 3–4 changed specs, update the PR body's Tests section | `gh pr edit N --repo {pr-repo} --body-file <file>` |
+
 ## Reviewing a PR
 
 | #  | Step | Skill / command |
 |----|------|-----------------|
 | 1  | Context: description, comments, linked issue, CI status | `gh pr view N --repo {pr-repo} --comments`, `gh pr checks N --repo {pr-repo}` |
-| 2  | Check out in isolation so the review never touches your branch | `superpowers:using-git-worktrees`, then `gh pr checkout N --repo {pr-repo}` in the worktree |
+| 2  | Check out in isolation so the review never touches your branch | `wt N` (fish): worktree on branch `pr-N` in a new kitty tab; re-running it fast-forwards to the PR's latest head. `wt N "/full-review {base} high"` also starts the review |
 | 3  | Pin the base: a fork's own `main` can be stale. Fetch, then use the PR's real base | `{base}` |
 | 4  | Find the spec. Shipping PR: a `draft` spec/plan or empty `distilled-to:` means unfinished | spec/plan under `{design-root}` in the diff, or the linked issue |
 | 5  | Three-way review | `/full-review {base} high` |
 | 6  | `{risky-areas}`: extra security pass | `/security-review` |
 | 7  | Run it: touched tests + lint | `{lint}`, `{test}` |
 | 8  | Verify every finding against the code yourself; drop what you can't confirm | — |
-| 9  | Draft comments locally: `bug:` / `risk:` / `nit:` / `q:` prefixes, "we" voice, anchored to file:line. Review drafts before posting | — |
-| 10 | Post after approval. The verdict (approve / comment / request changes) is yours | `gh pr review N --repo {pr-repo} --comment` (or `--approve` / `--request-changes`); inline comments via `gh api` |
+| 9  | Draft comments from the Approval Check items: `bug:` / `risk:` / `nit:` / `q:` prefixes, "we" voice, anchored to diff lines | `post-review <items>` |
+| 10 | Post after approval as one review. The verdict (approve / comment / request changes) is yours | `post-review` posts it via `gh api` |
 | 11 | Re-review after new pushes: only commits since the last review, plus whether earlier threads were handled | `/full-review <last-reviewed-sha> high` |
 
 - Skip `code-review --comment`: it posts directly, bypassing the draft read-through and the "we" voice.
@@ -217,6 +230,7 @@ Versions as installed on 2026-10-09 (`~/.claude/plugins/cache/`).
 |-------|------|
 | `adversarial-spec-review` | Fresh subagent tries to prove a written spec wrong; findings split into `fix` / `decide` |
 | `full-review` | Three-way review of a diff: `mattpocock-skills:code-review` (standards + spec), `ponytail:ponytail-review` (over-engineering), built-in `code-review` (correctness) |
+| `post-review` | Drafts Approval Check items as one GitHub review (inline comments, "we" voice), posts after approval; also replies to threads |
 | `adding-code-comments` | Ruby repos only (`app/`, `lib/`): default is no comment; `# Why:` pointers to distilled docs |
 
 ### Built-in Claude Code skills

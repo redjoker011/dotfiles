@@ -11,6 +11,7 @@ Built on three plugins: `superpowers`, `mattpocock-skills`, `ponytail` (versions
 | `workflow.md` | `~/.claude/workflow.md` | Full reference: architectural / bounded / PR-review paths, session splits, frontmatter + distillation, plugin inventory |
 | `skills/full-review/` | `~/.claude/skills/full-review/` | `/full-review [fixed-point] [level]`: three-way diff review (standards + spec, over-engineering, correctness) |
 | `skills/adversarial-spec-review/` | `~/.claude/skills/adversarial-spec-review/` | `/adversarial-spec-review [spec]`: fresh subagent tries to prove a draft spec wrong; `fix` / `decide` findings |
+| `skills/post-review/` | `~/.claude/skills/post-review/` | Drafts `/full-review` Approval Check items as one GitHub review with inline comments; posts after approval |
 | `skills/conventional-commits/` | `~/.claude/skills/conventional-commits/` | Write/fix Conventional Commit messages; installs `.git-commit-template` |
 | `skills/adding-code-comments/` | `~/.claude/skills/adding-code-comments/` | Ruby `app/`/`lib/` edits: default no comment, `# Why:` pointers to distilled docs |
 | `hooks/yard-reminder.sh` | `~/.claude/hooks/` | `PreToolUse`: points Ruby edits at `adding-code-comments` |
