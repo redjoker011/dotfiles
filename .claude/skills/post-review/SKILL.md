@@ -7,11 +7,12 @@ description: Use when turning /full-review findings into GitHub PR comments ("dr
 
 Turns numbered Approval Check items into one GitHub review: inline comments on diff lines plus a short body. Every run is **draft, show, post**: nothing reaches GitHub until the user approves the exact text.
 
-Args: item numbers and the event. Items default to every item in both Approval Check lists. Event is `comment` (default), `approve`, or `request-changes`; the verdict is the user's call.
+Args: item numbers and the event. With no item numbers, the review carries only the items worth raising (step 1). Event is `comment` (default), `approve`, or `request-changes`; the verdict is the user's call.
 
 ## Process
 
 1. **Pin the PR.** `gh pr view --json number,headRefOid,url` from the checkout. Repo: `{pr-repo}` from `docs/agents/workflow.md`, else the PR's own repo. Items come from the latest `## Approval Check` in this session; with none in context, ask the user to run `/full-review` first. Items tagged `(already raised: @user)` stay out unless the user names them.
+   **Trim.** Unless the user named items, keep an item only if staying quiet could ship a defect: a `bug:` or `risk:` that still holds at `headRefOid`, or a `q:` whose answer could change the code. Drop nits, style the linter would catch, and speculative "might someday" points. Order the kept items most severe first. If nothing survives, say so and offer an approval with no comments.
 2. **Anchor each item** at `headRefOid`. Confirm the finding still holds in the code. An inline comment must sit on a line `gh pr diff` shows (added or context line, `side: RIGHT`); a finding whose line is outside the diff goes in the review body with its `path:line`.
 3. **Draft** to `<scratchpad>/pr-<n>-review.json`:
    ```json
@@ -30,7 +31,7 @@ Args: item numbers and the event. Items default to every item in both Approval C
    - Speak as the team: we / us / our. The one first-person line allowed is "I'm happy to approve".
    - One finding per comment, two to four sentences: what breaks, the input or state that breaks it, and what would clear it. Cite other code as `path:line`.
    - Body: one or two sentences carrying the verdict. For approve-with-nits, say the raised points don't block.
-5. **Show the draft** as GitHub will render it: the body, then each comment as `path:line` and its text. Apply the user's edits to the JSON and show it again. The step is done when the user explicitly approves this version.
+5. **Show the draft** as GitHub will render it: the body, then each comment as `path:line` and its text. When you trimmed, list the dropped item numbers with a few words on why each was dropped. Apply the user's edits to the JSON and show it again. The step is done when the user explicitly approves this version.
 6. **Post**, then report the review URL:
    ```sh
    gh api -X POST repos/{pr-repo}/pulls/<n>/reviews --input <file> -q .html_url
